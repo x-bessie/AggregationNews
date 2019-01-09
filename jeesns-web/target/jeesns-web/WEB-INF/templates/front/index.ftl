@@ -111,33 +111,33 @@
                         <#--</ul>-->
                     <#--</div>-->
                 <#--</div>-->
-                <div class="panel group-topic-list no-border">
-                    <div class="panel-heading">
-                        最新帖子
-                    </div>
-                    <div class="panel-body">
-                        <div class="items">
-                            <div class="row">
-                                <div class="article-hot-list">
-                                    <ul>
-                                    <@group_topic_list cid=0 num=20 day=0; groupTopic>
-                                        <#list groupTopicList as groupTopic>
-                                            <li><i class="main-text-color"></i> <a href="${groupPath}/topic/${groupTopic.id}">
-                                                <#if groupTopic.title?length &gt; 18>
-                                                    ${groupTopic.title?substring(0,18)}...
-                                                <#else>
-                                                    ${groupTopic.title}
-                                                </#if>
-                                            </a></li>
-                                        </#list>
-                                    </@group_topic_list>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <#--<div class="panel group-topic-list no-border">-->
+                    <#--<div class="panel-heading">-->
+                        <#--最新帖子-->
+                    <#--</div>-->
+                    <#--<div class="panel-body">-->
+                        <#--<div class="items">-->
+                            <#--<div class="row">-->
+                                <#--<div class="article-hot-list">-->
+                                    <#--<ul>-->
+                                    <#--<@group_topic_list cid=0 num=20 day=0; groupTopic>-->
+                                        <#--<#list groupTopicList as groupTopic>-->
+                                            <#--<li><i class="main-text-color"></i> <a href="${groupPath}/topic/${groupTopic.id}">-->
+                                                <#--<#if groupTopic.title?length &gt; 18>-->
+                                                    <#--${groupTopic.title?substring(0,18)}...-->
+                                                <#--<#else>-->
+                                                    <#--${groupTopic.title}-->
+                                                <#--</#if>-->
+                                            <#--</a></li>-->
+                                        <#--</#list>-->
+                                    <#--</@group_topic_list>-->
+                                    <#--</ul>-->
+                                <#--</div>-->
+                            <#--</div>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>
+            </div>-->
 
 <#--群组、友情链接-->
             <#--<div class="col-sm-12 col-xs-12">-->

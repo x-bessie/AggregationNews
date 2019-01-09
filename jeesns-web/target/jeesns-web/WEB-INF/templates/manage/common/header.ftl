@@ -69,9 +69,9 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="${managePath}/cms/articleCate/list" module="cms"><i class="fa fa-circle-o"></i>栏目管理</a></li>
-                    <li><a href="${managePath}/cms/index" module="cms"><i class="fa fa-circle-o"></i>文章管理</a></li>
-                    <li><a href="${managePath}/cms/comment/list" module="cms"><i class="fa fa-circle-o"></i>评论管理</a></li>
+                    <li><a href="${managePath}/cms/articleCate/list" module="cms"><i class="fa fa-circle-o"></i>分类管理</a></li>
+                    <li><a href="${managePath}/cms/index" module="cms"><i class="fa fa-circle-o"></i>新闻管理</a></li>
+                    <li><a href="${managePath}/cms/comment/list" module="cms"><i class="fa fa-circle-o"></i>新闻评论管理</a></li>
                 </ul>
             </li>
             <li class="treeview" module="member">
@@ -133,8 +133,7 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <#--<li><a href="${managePath}/ads/list" module="common"><i class="fa fa-circle-o"></i>广告管理</a></li>-->
-                    <#--<li><a href="${managePath}/link/list" module="common"><i class="fa fa-circle-o"></i>友情链接</a></li>-->
+                    <li><a href="localhost:5000" target="_blank"><i class="fa fa-circle-o"></i>爬虫任务监控</a></li>
                 </ul>
             </li>
         </ul>

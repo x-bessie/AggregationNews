@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * Controller基类
- * Created by zchuanzhao on 2016/11/26.
+ * Created by Lina on 2019/1/6.
  */
 public class BaseController {
     @Resource

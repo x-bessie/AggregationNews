@@ -51,8 +51,7 @@
                                 </a>
                                 <span class="label label-danger"><i
                                         class="icon-eye-open"></i> ${article.viewCount}</span>
-                                <#--<i class="icon icon-time"></i> ${article.createTime?string('yyyy-MM-dd HH:mm')}-->
-                                <i class="icon icon-time"></i> ${article.publishedAt}
+                                <i class="icon icon-time"></i> ${article.createTime?string('yyyy-MM-dd HH:mm')}
                             </dd>
                             <dt></dt>
                             <dd class="pull-right">
@@ -77,8 +76,6 @@
                     <section class="content">
                         ${article.content}
                     </section>
-                    <div class="text-left"><a href=${article.url} target="_blank">阅读全文</a>
-                    </div>
                     <div class="text-center">
                     <#if article.isFavor == 0>
                         <a class="btn btn-danger btn-article-favor btn-article-unfavor article-favor" href="javascript:void(0)" article-id="${article.id}">

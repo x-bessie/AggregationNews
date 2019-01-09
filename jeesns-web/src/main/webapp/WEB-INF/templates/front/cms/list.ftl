@@ -46,7 +46,8 @@
                             </div>
                             <div class="item-footer">
                                 <i class="icon-eye-open"></i> ${article.viewCount} &nbsp;
-                                <span class="text-muted">${article.createTime?string('yyyy-MM-dd HH:mm')}</span>
+                                <#--<span class="text-muted">${article.createTime?string('yyyy-MM-dd HH:mm')}</span>-->
+                                <span class="text-muted">${article.publishedAt}</span>
                                 <a href="${basePath}/article/list?cid=${article.articleCate.id}">
                                     <div class="pull-right label label-success">
                                         ${article.articleCate.name}

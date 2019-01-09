@@ -106,8 +106,7 @@
                                     <td>${article.id}</td>
                                     <td>${article.title}</td>
                                     <td>${article.articleCate.name}</td>
-                                    <#--<td>${article.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>-->
-                                    <td>${article.publishedAt}</td>
+                                    <td>${article.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
                                     <td>
                                         <#if article.status==0>
                                             <a class="marg-l-5" target="_jeesnsLink"
