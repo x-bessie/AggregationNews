@@ -4,61 +4,53 @@ import com.lxinet.jeesns.core.dto.ResultModel;
 import com.lxinet.jeesns.core.exception.OpeErrorException;
 import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.core.service.impl.BaseServiceImpl;
-import com.lxinet.jeesns.dao.member.IMemberFansDao;
-import com.lxinet.jeesns.model.member.MemberFans;
-import com.lxinet.jeesns.service.member.IMemberFansService;
+import com.lxinet.jeesns.dao.member.IMemberCollectDao;
+import com.lxinet.jeesns.model.member.MemberCollect;
+import com.lxinet.jeesns.service.member.IMemberCollectService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 2017/2/21.
+ * Created by liaolina  on 2019/1/12.
  */
-@Service("memberFansServiceImpl")
-public class MemberFansServiceImpl extends BaseServiceImpl<MemberFans> implements IMemberFansService {
+@Service("memberCollectServiceImpl")
+
+public class MemberCollectServiceImpl extends BaseServiceImpl<MemberCollect> implements  IMemberCollectService {
     @Resource
-    private IMemberFansDao memberFansDao;
+    private IMemberCollectDao memberCollectDao;
 
     @Override
-    public MemberFans find(Integer whoFollowId, Integer followWhoId) {
-        return memberFansDao.find(whoFollowId,followWhoId);
+    public MemberCollect find(Integer whoCollectId, Integer collectNewId) {
+        return memberCollectDao.find( whoCollectId, collectNewId);
     }
 
     /**
-     * 关注
+     * 收藏
      */
     @Override
-    public boolean save(Integer whoFollowId, Integer followWhoId) {
-        if(memberFansDao.find(whoFollowId,followWhoId) != null){
-            throw new OpeErrorException("已经关注");
+    public boolean save(Integer whoCollectId, Integer collectNewId) {
+        if (memberCollectDao.find(whoCollectId, collectNewId)!=null){
+            throw new OpeErrorException("已经收藏");
         }
-        return memberFansDao.save(whoFollowId,followWhoId) == 1;
+        return memberCollectDao.save(whoCollectId, collectNewId)==1;
     }
 
     /**
-     * 取消关注
+     * 取消收藏
      */
     @Override
-    public boolean delete(Integer whoFollowId, Integer followWhoId) {
-        return memberFansDao.delete(whoFollowId,followWhoId) > 0;
+    public boolean delete(Integer whoCollectId, Integer collectNewId) {
+        return memberCollectDao.delete(whoCollectId, collectNewId)>0;
     }
 
+
     @Override
-    public ResultModel followsList(Page page, Integer whoFollowId) {
-        List<MemberFans> list = memberFansDao.followsList(page, whoFollowId);
-        ResultModel model = new ResultModel(0,page);
+    public ResultModel followsList(Page page, Integer whoCollectId) {
+        List<MemberCollect> list =memberCollectDao.followsList(page,whoCollectId);
+        ResultModel model =new ResultModel(0,page);
         model.setData(list);
         return model;
     }
-
-    @Override
-    public ResultModel fansList(Page page, Integer followWhoId) {
-        List<MemberFans> list = memberFansDao.fansList(page, followWhoId);
-        ResultModel model = new ResultModel(0,page);
-        model.setData(list);
-        return model;
-    }
-
-
 }

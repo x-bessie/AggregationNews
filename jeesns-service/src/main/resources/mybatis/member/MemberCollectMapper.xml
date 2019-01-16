@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxinet.jeesns.dao.member.IMemberCollectDao">
+  <resultMap id="MemberCollectResult" type="MemberCollect">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="collect_new" jdbcType="INTEGER" property="collectNew" />
+    <result column="who_collect" jdbcType="INTEGER" property="whoCollect" />
+  </resultMap>
+
+  <select id="find" resultMap="MemberCollectResult">
+    select * from tbl_member_collect where collect_new=#{collectNewId} and who_collect=#{whoCollectId}
+  </select>
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from tbl_member_collect where collect_new=#{collectNewId} and who_collect=#{whoCollectId}
+  </delete>
+  <insert id="save" parameterType="MemberCollect">
+    insert into tbl_member_collect(create_time,collect_new,who_collect) values(now(),#{collectNewId},#{whoCollectId})
+  </insert>
+  <select id="followsList" resultMap="MemberCollectResult">
+    SELECT a.who_collect,a.create_time,a.collect_new as collect_new,b.id as 'collectWhatNews.id',b.title AS 'collectWhatNews.title'
+      FROM tbl_member_collect as a LEFT JOIN tbl_article as b ON a.collect_new = b.id
+     WHERE who_collect = #{whoCollectId}
+  </select>
+
+</mapper>
