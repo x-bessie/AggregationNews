@@ -12,14 +12,13 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="${basePath}/">首页</a></li>
-                <li><a href="${basePath}/article/list">文章</a></li>
+                <li><a href="${basePath}/article/list">新闻</a></li>
                 <li><a href="${weiboPath}/list">${WEIBO_ALIAS}</a></li>
                 <li><a href="${groupPath}/">${GROUP_ALIAS}</a></li>
                 <#--<li><a href="${basePath}/question/">问答</a></li>-->
                 <li><a href="${basePath}/action/list">动态</a></li>
                 <#--<li><a href="${basePath}/picture/">图库</a></li>-->
                 <li><a href="${basePath}/checkin/">签到</a></li>
-                <li><a href="${basePath}/article/list">新闻</a></li>
             </ul>
             <ul class="nav navbar-top-links navbar-right">
                 <div class="nav navbar-nav navbar-nav-right">

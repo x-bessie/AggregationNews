@@ -30,10 +30,10 @@
 <#include "/manage/common/header.ftl"/>
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>文章评论(${model.page.totalCount})</h1>
+            <h1>新闻评论(${model.page.totalCount})</h1>
             <ol class="breadcrumb">
                 <li><a href="${managePath}/index"><i class="fa fa-dashboard"></i> 主页</a></li>
-                <li class="active">文章评论管理</li>
+                <li class="active">新闻评论管理</li>
             </ol>
         </section>
         <section class="content">
@@ -62,7 +62,7 @@
                                     <th style="width: 10px">#</th>
                                     <th>会员</th>
                                     <th width="50%">评论内容</th>
-                                    <th>文章</th>
+                                    <th>新闻</th>
                                     <th>创建时间</th>
                                     <th width="50px">操作</th>
                                 </tr>

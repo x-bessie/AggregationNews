@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>发布新闻 - ${SITE_NAME} - AggregationNews后台管理系统</title>
+    <title>编辑文章 - ${SITE_NAME} - AggregationNews后台管理系统</title>
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <meta name="author" content="Lina"/>
@@ -39,14 +39,15 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <form class="form-horizontal jeesns_form" role="form" action="${managePath}/cms/article/save" method="post" onsubmit="ckUpdate();" callback="parentReload">
+                <form class="form-horizontal jeesns_form" role="form" action="${managePath}/cms/article/update" method="post" onsubmit="ckUpdate();" callback="parentReload">
+                    <input type="hidden" class="form-control" name="id" value="${article.id}">
                     <div class="form-group">
                         <label for="lastname" class="col-sm-1 control-label">栏目</label>
                         <div class="col-sm-3">
                             <select class="form-control" name="cateId" data-type="selected" alt="栏目">
-                                <option value="" selected>=请选择栏目=</option>
+                                <option value="">=请选择栏目=</option>
                             <#list cateList as mainMenu>
-                                <option value="${mainMenu.id}">${mainMenu.name}</option>
+                                <option value="${mainMenu.id}" <#if article.articleCate.id==mainMenu.id>selected</#if>>${mainMenu.name}</option>
                             </#list>
                             </select>
                         </div>
@@ -54,17 +55,23 @@
                     <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">标题</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="title" name="title" placeholder="标题" data-type="require">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="标题" data-type="require" value="${article.title}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">缩略图</label>
                         <div class="col-sm-10">
-                            <div id="uploader" class="wu-example">
+                            <div id="uploader">
                                 <!--用来存放文件信息-->
-                                <input type="hidden" id="thumbnail" name="thumbnail">
-                                <div id="preview" class="uploader-list"></div>
+                                <input type="hidden" id="thumbnail" name="thumbnail" value="${article.thumbnail}">
+                                <div id="preview" class="uploader-list">
+                                <#if article.thumbnail?? && article.thumbnail!=''>
+                                    <img src="${basePath}${article.thumbnail}" width="100px" height="100px"/>
+                                </#if>
+                                </div>
                                 <div id="imagesList" class="uploader-list"></div>
+                                <h4 class="info"></h4>
+                                <p class="state"></p>
                                 <div class="btns">
                                     <div id="picker">选择文件</div>
                                 </div>
@@ -74,32 +81,32 @@
                     <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">描述</label>
                         <div class="col-sm-8">
-                            <textarea class="form-control" rows="3" name="description" alt="描述"></textarea>
+                            <textarea class="form-control" rows="3" name="description">${article.description}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">内容</label>
                         <div class="col-sm-10">
-                            <textarea class="ckeditor" cols="80" id="content" name="content" rows="10"></textarea>
+                            <textarea class="ckeditor" cols="80" id="content" name="content" rows="10">${article.content?xhtml}</textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">来源</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="source" name="source">
+                            <input type="text" class="form-control" id="source" name="source" value="${article.source}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">作者</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="writer" name="writer">
+                            <input type="text" class="form-control" id="writer" name="writer" value="${article.writer}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="firstname" class="col-sm-1 control-label">浏览数</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="viewCount" name="viewCount" placeholder="浏览数" value="0" data-type="integer">
+                            <input type="text" class="form-control" id="viewCount" name="viewCount" placeholder="浏览数" value="${article.viewCount}" data-type="integer">
                         </div>
                     </div>
                     <div class="form-group">

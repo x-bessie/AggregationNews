@@ -803,7 +803,18 @@ a {
     transition: all .5s;
     color: #ea644a;
 }
+.btn-article-collect {
+    border-radius: 50px;
+    padding: 15px 40px;
+    font-size: 18px;
+}
 
+.btn-article-uncollect {
+    color: inherit;
+    background-color: transparent;
+    transition: all .5s;
+    color: #ea644a;
+}
 .friend-link ul li {
     display: inline;
     float: left;

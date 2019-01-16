@@ -37,13 +37,11 @@
             <div class="col-sm-2 col-xs-12">
                 <ul class="list-group">
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}">动态</a></li>
-                    <#--<li class="list-group-item"><a href="${basePath}/picture/album/${member.id}">相册</a></li>-->
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/fans">粉丝</a></li>
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/follows">关注</a></li>
-                    <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/article">新闻</a></li>
-                    <#--<li class="list-group-item"><a href="${basePath}/u/${member.id}/home/groupTopic">群帖</a></li>-->
-                    <#--<li class="list-group-item"><a href="${basePath}/u/${member.id}/home/weibo">微博</a></li>-->
+                    <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/article">文章</a></li>
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/group">关注群组</a></li>
+                    <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/collect">收藏的新闻</a></li>
                 </ul>
             </div>
             <div class="col-sm-10 col-xs-12">
@@ -53,10 +51,6 @@
                             <h3><i class="icon-list-ul"></i>
                             <#if type=="article">
                                             文章
-                            <#--<#elseif type=="groupTopic">-->
-                                            <#--群贴-->
-                            <#--<#elseif type=="weibo">-->
-                                            <#--微博-->
                             <#elseif type=="groupTopic">
                                             群贴
                             <#elseif type=="fans">
@@ -65,6 +59,8 @@
                                             关注
                             <#elseif type=="group">
                                             关注群组
+                            <#elseif type=="collect">
+                                            收藏的新闻
                             </#if>
                             </h3>
                         </header>
@@ -88,6 +84,7 @@
                                      url="${basePath}/u/${member.id}/home/article"
                                      currentPage="${model.page.pageNo}"
                                      pageCount="${model.page.totalPage}">
+
                                  </ul>
                              <#elseif type=="groupTopic">
                                  <#list model.data as groupTopic>
@@ -191,6 +188,20 @@
                                      </div>
                                  </div>
                                  </#list>
+                             <#elseif  type=="collect">
+                                <#list model.data as memberCollect>
+                                    <div class="item">
+                                        <div class="item-heading">
+                                            <div class="pull-right"><span
+                                                class="text-muted">${memberCollect.createTime?string('yyyy-MM-dd HH:mm')}</span>
+                                            </div>
+                                            <h4>
+                                                <a href="${basePath}/article/detail/${memberCollect.collectWhatNews.id}">${memberCollect.collectWhatNews.title}</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                </#list>
                                 <ul class="pager pagination pagination-sm no-margin pull-right"
                                     url="${basePath}/u/${member.id}/home/follows"
                                     currentPage="${model.page.pageNo}"

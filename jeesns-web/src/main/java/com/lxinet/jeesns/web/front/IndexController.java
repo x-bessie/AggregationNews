@@ -3,6 +3,7 @@ package com.lxinet.jeesns.web.front;
 import com.lxinet.jeesns.core.utils.StringUtils;
 import com.lxinet.jeesns.service.cms.IArticleService;
 import com.lxinet.jeesns.service.common.IArchiveService;
+import com.lxinet.jeesns.service.member.IMemberCollectService;
 import com.lxinet.jeesns.utils.EmojiUtil;
 import com.lxinet.jeesns.utils.MemberUtil;
 import com.lxinet.jeesns.core.dto.ResultModel;
@@ -57,6 +58,8 @@ public class IndexController extends BaseController{
     private IMemberFansService memberFansService;
     @Resource
     private ILinkService linkService;
+    @Resource
+    private IMemberCollectService memberCollectService;
 
     @RequestMapping(value={"/", "index"},method = RequestMethod.GET)
     public String index(@RequestParam(value = "key",required = false,defaultValue = "") String key, Integer cateid,Model model) {
@@ -113,6 +116,8 @@ public class IndexController extends BaseController{
             model.addAttribute("model", weiboService.listByPage(page,id,loginMemberId,""));
         } else if("follows".equals(type)){
             model.addAttribute("model", memberFansService.followsList(page,id));
+        }else if ("collect".equals(type)){
+            model.addAttribute("model", memberCollectService.followsList(page,id));
         } else if("fans".equals(type)){
             model.addAttribute("model", memberFansService.fansList(page,id));
         }

@@ -88,13 +88,19 @@
                         <a class="btn btn-danger btn-article-favor article-favor" href="javascript:void(0)" article-id="${article.id}">
                             <i class="icon-heart"></i> 喜欢 | ${article.favor}
                         </a>
-                    </#if>
+                    </#if >
+
+                        <#--<a class="btn btn-danger btn-article-collect article-collect " member-id="${member.id}>-->
+                        <a class="label label-primary edit member-follows" member-id="${member.id}">
+                            <i class="icon icon-heart-o"></i> 收藏
+                        </a>&nbsp;
+
                 </article>
                 <@ads id=2>
                     <#include "/tp/ad.ftl"/>
                 </@ads>
                 <div class="comments panel">
-                    <div class="panel-heading">文章评论</div>
+                    <div class="panel-heading">新闻评论</div>
                     <header>
                         <div class="reply-form">
                             <form class="form-horizontal jeesns_form" action="${basePath}/article/comment/${article.id}"
@@ -119,32 +125,32 @@
                 </div>
             </div>
             <div class="col-sm-4 col-xs-12">
-                <div class="panel">
-                    <div class="panel-body weibo-author">
-                        <div class="avatar">
-                            <a href="${basePath}/u/${article.member.id}" target="_blank">
-                                <img alt="image" class="img-circle mg-l-30" src="${basePath}${article.member.avatar}"/></a>
-                        </div>
-                        <div class="name">
-                            <a href="${basePath}/u/${article.member.id}"
-                               target="_blank">${article.member.name}</a>
-                        </div>
-                        <div class="info">
-                            <p>
-                                <a href="${basePath}/u/${article.member.id}/home/follows">${article.member.follows}
-                                    关注</a> /
-                                <a href="${basePath}/u/${article.member.id}/home/fans">${article.member.fans}
-                                    粉丝</a>
-                            </p>
-                            <p>
-                            ${article.member.introduce}
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <#--<div class="panel">-->
+                    <#--<div class="panel-body weibo-author">-->
+                        <#--<div class="avatar">-->
+                            <#--<a href="${basePath}/u/${article.member.id}" target="_blank">-->
+                                <#--<img alt="image" class="img-circle mg-l-30" src="${basePath}${article.member.avatar}"/></a>-->
+                        <#--</div>-->
+                        <#--<div class="name">-->
+                            <#--<a href="${basePath}/u/${article.member.id}"-->
+                               <#--target="_blank">${article.member.name}</a>-->
+                        <#--</div>-->
+                        <#--<div class="info">-->
+                            <#--<p>-->
+                                <#--<a href="${basePath}/u/${article.member.id}/home/follows">${article.member.follows}-->
+                                    <#--关注</a> /-->
+                                <#--<a href="${basePath}/u/${article.member.id}/home/fans">${article.member.fans}-->
+                                    <#--粉丝</a>-->
+                            <#--</p>-->
+                            <#--<p>-->
+                            <#--${article.member.introduce}-->
+                            <#--</p>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
                 <div class="panel">
                     <div class="panel-heading">
-                        文章栏目
+                        新闻栏目
                     </div>
                     <div class="panel-body">
                         <a href="${basePath}/article/list" class="btn btn-primary">全部</a>
@@ -159,7 +165,7 @@
                 </@ads>
                 <div class="panel">
                     <div class="panel-heading">
-                        最新文章
+                        最新新闻
                     </div>
                     <div class="panel-body article-hot-list">
                         <ul>
@@ -174,7 +180,7 @@
                 </div>
                 <div class="panel">
                     <div class="panel-heading">
-                        热门文章
+                        热门新闻
                     </div>
                     <div class="panel-body article-hot-list">
                         <ul>
@@ -204,6 +210,7 @@
         $(".article-favor").click(function () {
             cms.favor($(this), "${basePath}")
         });
+
     });
 </script>
 </body>

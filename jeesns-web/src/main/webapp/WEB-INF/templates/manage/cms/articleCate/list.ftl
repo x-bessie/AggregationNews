@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章栏目管理 - ${SITE_NAME} - AggregationNews后台管理系统</title>
+    <title>新闻栏目管理 - ${SITE_NAME} - AggregationNews后台管理系统</title>
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <meta name="author" content="Lina"/>
@@ -37,7 +37,7 @@
             </h4>
             <ol class="breadcrumb">
                 <li><a href="${managePath}/index"><i class="fa fa-dashboard"></i> 主页</a></li>
-                <li class="active">文章栏目</li>
+                <li class="active">栏目</li>
             </ol>
         </section>
         <section class="content">

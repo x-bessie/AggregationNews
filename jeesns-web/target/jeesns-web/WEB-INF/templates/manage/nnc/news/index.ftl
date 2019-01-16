@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新闻管理 - ${SITE_NAME} - AggregationNews后台管理系统</title>
+    <title>文章管理 - ${SITE_NAME} - AggregationNews后台管理系统</title>
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <meta name="author" content="Lina"/>
@@ -106,8 +106,7 @@
                                     <td>${article.id}</td>
                                     <td>${article.title}</td>
                                     <td>${article.articleCate.name}</td>
-                                    <#--<td>${article.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>-->
-                                    <td>${article.publishedAt}</td>
+                                    <td>${article.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
                                     <td>
                                         <#if article.status==0>
                                             <a class="marg-l-5" target="_jeesnsLink"

@@ -1,5 +1,6 @@
 package com.lxinet.jeesns.web.front;
 
+import com.lxinet.jeesns.service.member.IMemberCollectService;
 import com.lxinet.jeesns.utils.MemberUtil;
 import com.lxinet.jeesns.core.enums.Messages;
 import com.lxinet.jeesns.core.exception.NotFountException;
@@ -45,6 +46,8 @@ public class ArticleController extends BaseController {
     private IArchiveService archiveService;
     @Resource
     private IArticleCommentService articleCommentService;
+    @Resource
+    private IMemberCollectService memberCollectService;
 
     @RequestMapping(value="/list",method = RequestMethod.GET)
     public String list(String key, @RequestParam(value = "cid",defaultValue = "0",required = false) Integer cid,
@@ -208,4 +211,19 @@ public class ArticleController extends BaseController {
         ResultModel resultModel = articleService.favor(loginMember,id);
         return resultModel;
     }
+    /**
+     * 文章：收藏功能
+     * @param id
+     * @retuen
+     */
+//    @RequestMapping(value="/collect/{id}",method = RequestMethod.GET)
+//    @ResponseBody
+//    @Before(UserLoginInterceptor.class)
+//    public ResultModel collect(@PathVariable("id") Interger id){
+//        Member loginMember =MemberUtil.getLoginMember(request);
+//        if (id==null){
+//            throw new ParamException();
+//        }
+//        ResultModel resultModel =memberCollectService.collect();
+//    }
 }

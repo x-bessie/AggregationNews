@@ -51,8 +51,7 @@
                                 </a>
                                 <span class="label label-danger"><i
                                         class="icon-eye-open"></i> ${article.viewCount}</span>
-                                <#--<i class="icon icon-time"></i> ${article.createTime?string('yyyy-MM-dd HH:mm')}-->
-                                <i class="icon icon-time"></i> ${article.publishedAt}
+                                <i class="icon icon-time"></i> ${article.createTime?string('yyyy-MM-dd HH:mm')}
                             </dd>
                             <dt></dt>
                             <dd class="pull-right">
@@ -77,8 +76,6 @@
                     <section class="content">
                         ${article.content}
                     </section>
-                    <div class="text-left"><a href=${article.url} target="_blank">阅读全文</a>
-                    </div>
                     <div class="text-center">
                     <#if article.isFavor == 0>
                         <a class="btn btn-danger btn-article-favor btn-article-unfavor article-favor" href="javascript:void(0)" article-id="${article.id}">
@@ -89,13 +86,12 @@
                             <i class="icon-heart"></i> 喜欢 | ${article.favor}
                         </a>
                     </#if>
-                        <a class="btn btn-danger btn-article-collect article-collect ">收藏</a>
                 </article>
                 <@ads id=2>
                     <#include "/tp/ad.ftl"/>
                 </@ads>
                 <div class="comments panel">
-                    <div class="panel-heading">新闻评论</div>
+                    <div class="panel-heading">文章评论</div>
                     <header>
                         <div class="reply-form">
                             <form class="form-horizontal jeesns_form" action="${basePath}/article/comment/${article.id}"
@@ -120,32 +116,32 @@
                 </div>
             </div>
             <div class="col-sm-4 col-xs-12">
-                <#--<div class="panel">-->
-                    <#--<div class="panel-body weibo-author">-->
-                        <#--<div class="avatar">-->
-                            <#--<a href="${basePath}/u/${article.member.id}" target="_blank">-->
-                                <#--<img alt="image" class="img-circle mg-l-30" src="${basePath}${article.member.avatar}"/></a>-->
-                        <#--</div>-->
-                        <#--<div class="name">-->
-                            <#--<a href="${basePath}/u/${article.member.id}"-->
-                               <#--target="_blank">${article.member.name}</a>-->
-                        <#--</div>-->
-                        <#--<div class="info">-->
-                            <#--<p>-->
-                                <#--<a href="${basePath}/u/${article.member.id}/home/follows">${article.member.follows}-->
-                                    <#--关注</a> /-->
-                                <#--<a href="${basePath}/u/${article.member.id}/home/fans">${article.member.fans}-->
-                                    <#--粉丝</a>-->
-                            <#--</p>-->
-                            <#--<p>-->
-                            <#--${article.member.introduce}-->
-                            <#--</p>-->
-                        <#--</div>-->
-                    <#--</div>-->
-                <#--</div>-->
+                <div class="panel">
+                    <div class="panel-body weibo-author">
+                        <div class="avatar">
+                            <a href="${basePath}/u/${article.member.id}" target="_blank">
+                                <img alt="image" class="img-circle mg-l-30" src="${basePath}${article.member.avatar}"/></a>
+                        </div>
+                        <div class="name">
+                            <a href="${basePath}/u/${article.member.id}"
+                               target="_blank">${article.member.name}</a>
+                        </div>
+                        <div class="info">
+                            <p>
+                                <a href="${basePath}/u/${article.member.id}/home/follows">${article.member.follows}
+                                    关注</a> /
+                                <a href="${basePath}/u/${article.member.id}/home/fans">${article.member.fans}
+                                    粉丝</a>
+                            </p>
+                            <p>
+                            ${article.member.introduce}
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <div class="panel">
                     <div class="panel-heading">
-                        新闻栏目
+                        文章栏目
                     </div>
                     <div class="panel-body">
                         <a href="${basePath}/article/list" class="btn btn-primary">全部</a>
@@ -160,7 +156,7 @@
                 </@ads>
                 <div class="panel">
                     <div class="panel-heading">
-                        最新新闻
+                        最新文章
                     </div>
                     <div class="panel-body article-hot-list">
                         <ul>
@@ -175,7 +171,7 @@
                 </div>
                 <div class="panel">
                     <div class="panel-heading">
-                        热门新闻
+                        热门文章
                     </div>
                     <div class="panel-body article-hot-list">
                         <ul>
