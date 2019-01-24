@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * 会员实体类
- * Created by zchuanzhao on 16/9/26.
+ * Created by Lina on 19/01/22.
  */
 @Table("tbl_member")
 public class Member implements Serializable {
@@ -161,6 +161,9 @@ public class Member implements Serializable {
 
 	private MemberLevel memberLevel;
 
+	//新闻收藏
+	@Column("collect")
+	private Integer collect;
 
 	public Integer getId() {
 		return id;
@@ -465,5 +468,13 @@ public class Member implements Serializable {
 
 	public void setMemberLevel(MemberLevel memberLevel) {
 		this.memberLevel = memberLevel;
+	}
+
+	public Integer getCollect() {
+		return collect;
+	}
+
+	public void setCollect(Integer collect) {
+		this.collect = collect;
 	}
 }

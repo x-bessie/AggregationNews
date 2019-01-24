@@ -10,7 +10,7 @@ import java.util.List;
 
 
 /**
- * Created by zchuanzhao on 2016/10/14.
+ * Created by liaolina on 2019/01/20.
  */
 public interface IArticleService extends IBaseService<Article> {
 
@@ -32,4 +32,6 @@ public interface IArticleService extends IBaseService<Article> {
     ResultModel favor(Member loginMember, int articleId);
 
     List<Article> listByCustom(int cid,String sort,int num,int day,int thumbnail);
+
+//    ResultModel collect(Member loginMember,int articleId);
 }

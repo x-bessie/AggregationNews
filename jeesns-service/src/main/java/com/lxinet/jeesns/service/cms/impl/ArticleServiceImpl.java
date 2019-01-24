@@ -188,6 +188,36 @@ public class ArticleServiceImpl extends BaseServiceImpl<Article> implements IArt
         return articleDao.listByCustom(cid,sort,num,day,thumbnail);
     }
 
+//    @Override
+//    public ResultModel collect(Member loginMember, int articleId) {
+//        Article article = this.findById(articleId);
+//        ValidUtill.checkIsNull(article, "新闻不存在");
+//        int favor = article.getFavor();
+//        String message;
+//        ResultModel<Integer> resultModel;
+//        if(articleFavorService.find(articleId,loginMember.getId()) == null){
+//            //增加
+//            articleDao.collect(articleId);
+//            articleFavorService.save(articleId,loginMember.getId());
+//            message = "喜欢成功";
+//            favor += 1;
+//            //新闻收到收藏
+//            scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.ARTICLE_RECEIVED_LIKE, articleId);
+//            //点赞之后发送系统信息
+//            messageService.diggDeal(loginMember.getId(),article.getMemberId(),AppTag.CMS,MessageType.CMS_ARTICLE_LIKE,article.getId());
+//        }else {
+//            //减少
+//            articleDao.collect(articleId);
+//            articleFavorService.delete(articleId,loginMember.getId());
+//            message = "取消收藏成功";
+//            favor -= 1;
+//        }
+//        resultModel = new ResultModel(0,message);
+//        resultModel.setData(favor);
+//        return resultModel;
+//
+//    }
+
     @Override
     @Transactional
     public boolean update(Member member, Article article) {
