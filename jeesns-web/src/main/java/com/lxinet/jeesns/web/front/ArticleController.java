@@ -31,7 +31,7 @@ import java.util.List;
 
 /**
  * 前台文章Controller
- * Created by zchuanzhao on 16/9/29.
+ * Created by liaolina on 19/01/20.
  */
 @Controller("frontArticleController")
 @RequestMapping("/article")
@@ -219,11 +219,12 @@ public class ArticleController extends BaseController {
 //    @RequestMapping(value="/collect/{id}",method = RequestMethod.GET)
 //    @ResponseBody
 //    @Before(UserLoginInterceptor.class)
-//    public ResultModel collect(@PathVariable("id") Interger id){
+//    public ResultModel collect(@PathVariable("id") Integer id){
 //        Member loginMember =MemberUtil.getLoginMember(request);
 //        if (id==null){
 //            throw new ParamException();
 //        }
-//        ResultModel resultModel =memberCollectService.collect();
+//        ResultModel resultModel =articleService.collect(loginMember,id);
+//        return resultModel;
 //    }
 }
