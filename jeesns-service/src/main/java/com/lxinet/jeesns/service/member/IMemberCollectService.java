@@ -8,7 +8,7 @@ import com.lxinet.jeesns.model.member.MemberFans;
 
 
 /**
- * Created by zchuanzhao on 17/2/21.
+ * Created by liaolina on 19/1/18.
  */
 public interface IMemberCollectService extends IBaseService<MemberCollect> {
 

@@ -149,6 +149,23 @@ public interface IMemberService extends IBaseService<Member> {
      */
     ResultModel isFollowed(Member loginMember, Integer followWhoId);
 
+
+    /**
+     * 收藏,取消收藏
+     * @param loginMember
+     * @param collectNewId
+     * @return
+     */
+    ResultModel collect(Member loginMember, Integer collectNewId);
+
+    /**
+     * 是否已收藏
+     * @param loginMember
+     * @param collectNewId
+     * @return
+     */
+    ResultModel isCollect(Member loginMember, Integer collectNewId);
+
     /**
      * 获取私信中的联系人列表
      * @param page
