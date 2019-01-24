@@ -34,7 +34,7 @@
             <div class="col-sm-2 col-xs-12">
                 <ul class="list-group">
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}">动态</a></li>
-                    <#--<li class="list-group-item"><a href="${basePath}/picture/album/${member.id}">相册</a></li>-->
+                <#--<li class="list-group-item"><a href="${basePath}/picture/album/${member.id}">相册</a></li>-->
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/fans">粉丝</a></li>
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/follows">关注</a></li>
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/article">文章</a></li>
