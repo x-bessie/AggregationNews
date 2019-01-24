@@ -22,10 +22,5 @@
       FROM tbl_member_collect as a LEFT JOIN tbl_article as b ON a.collect_new = b.id
      WHERE who_collect = #{whoCollectId}
   </select>
-  <!--<select id="fansList" resultMap="MemberFansResult">-->
-    <!--SELECT a.follow_who,a.who_follow as who_follow,b.id as 'whoFollowMember.id',b.name as 'whoFollowMember.name',-->
-    <!--b.avatar as 'whoFollowMember.avatar',b.fans as 'whoFollowMember.fans',b.follows as 'whoFollowMember.follows'-->
-     <!--FROM tbl_member_fans as a LEFT JOIN tbl_member as b ON a.who_follow = b.id-->
-    <!--WHERE follow_who = #{followWhoId}-->
-  <!--</select>-->
+
 </mapper>
