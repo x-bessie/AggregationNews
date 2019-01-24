@@ -25,7 +25,7 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 /**
- * Created by zchuanzhao on 2016/11/22.
+ * Created by zchuanzhao on 2019/01/20.
  */
 @Controller("memberIndexController")
 @RequestMapping("/member")
@@ -250,6 +250,30 @@ public class MemberController extends BaseController {
     public ResultModel isFollowed(@PathVariable(value = "followWhoId") Integer followWhoId){
         Member loginMember = MemberUtil.getLoginMember(request);
         return memberService.isFollowed(loginMember,followWhoId);
+    }
+
+    /**
+     * 收藏，取消收藏
+     * @param collectNewId
+     * @return
+     */
+    @RequestMapping(value = "/collect/{collectNewId}",method = RequestMethod.GET)
+    @ResponseBody
+    public ResultModel collect(@PathVariable(value = "collectNewId") Integer collectNewId ){
+        Member loginMember=MemberUtil.getLoginMember(request);
+        return memberService.collect(loginMember,collectNewId);
+    }
+
+    /**
+     * 查询是否已收藏该用户
+     * @param collectNewId
+     * @return
+     */
+    @RequestMapping(value = "/isCollect/{collectNewId}",method = RequestMethod.GET)
+    @ResponseBody
+    public ResultModel isCollect(@PathVariable(value = "collectNewId") Integer collectNewId){
+        Member loginMember = MemberUtil.getLoginMember(request);
+        return memberService.isCollect(loginMember,collectNewId);
     }
 
 
