@@ -24,7 +24,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -449,6 +448,43 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
             loginMemberId = loginMember.getId().intValue();
         }
         if(memberFansService.find(loginMemberId,followWhoId) == null){
+            return new ResultModel(0,"未关注");
+        }else {
+            return new ResultModel(1,"已关注");
+        }
+    }
+
+    @Override
+    public ResultModel collect(Member loginMember, Integer collectNewId) {
+        if(loginMember == null){
+            throw new NotLoginException();
+        }
+//        if(this.findById(collectNewId) == null){
+//            return new ResultModel(-1,"关注的会员不存在");
+//        }
+//        if(loginMember.getId().intValue() == collectNewId.intValue()){
+//            return new ResultModel(-1,"不能收藏自己");
+//        }
+        if(memberCollectService.find(loginMember.getId(),collectNewId) == null){
+            //关注
+            memberCollectService.save(loginMember.getId(),collectNewId);
+            memberDao.collect(loginMember.getId());
+            return new ResultModel(1,"收藏成功");
+        }else {
+            //取消关注
+            memberCollectService.delete(loginMember.getId(),collectNewId);
+            memberDao.collect(loginMember.getId());
+            return new ResultModel(0,"取消收藏成功");
+        }
+    }
+
+    @Override
+    public ResultModel isCollect(Member loginMember, Integer collectNewId) {
+        int loginMemberId = 0;
+        if(loginMember != null){
+            loginMemberId = loginMember.getId().intValue();
+        }
+        if(memberCollectService.find(loginMemberId,collectNewId) == null){
             return new ResultModel(0,"未关注");
         }else {
             return new ResultModel(1,"已关注");
