@@ -50,4 +50,6 @@ public interface IArticleDao extends BaseMapper<Article> {
     int updateViewCount(@Param("id") int id);
 
     int favor(@Param("id") int id, @Param("num") int num);
+
+    int collect(@Param("id") int id);
 }

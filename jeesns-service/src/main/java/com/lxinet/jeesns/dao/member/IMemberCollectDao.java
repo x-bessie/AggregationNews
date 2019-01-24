@@ -12,15 +12,15 @@ import java.util.List;
  */
 public interface IMemberCollectDao extends BaseMapper<MemberCollect> {
 
-    List<MemberCollect> followsList(@Param("page") Page page, @Param("whoCollectId") Integer whoFollowId);
+    List<MemberCollect> followsList(@Param("page") Page page, @Param("whoCollectId") Integer whoCollectId);
 
 //    List<MemberFans> fansList(@Param("page") Page page, @Param("followWhoId") Integer followWhoId);
 
-    MemberCollect find(@Param("whoCollectId") Integer whoFollowId, @Param("collectNewId") Integer followWhoId);
+    MemberCollect find(@Param("whoCollectId") Integer whoCollectId, @Param("collectNewId") Integer collectNewId);
 
-    Integer save(@Param("whoCollectId") Integer whoFollowId, @Param("collectNewId") Integer followWhoId);
+    Integer save(@Param("whoCollectId") Integer whoCollectId, @Param("collectNewId") Integer collectNewId);
 
-    Integer delete(@Param("whoCollectId") Integer whoFollowId, @Param("collectNewId") Integer followWhoId);
+    Integer delete(@Param("whoCollectId") Integer whoCollectId, @Param("collectNewId") Integer collectNewId);
 
 
 

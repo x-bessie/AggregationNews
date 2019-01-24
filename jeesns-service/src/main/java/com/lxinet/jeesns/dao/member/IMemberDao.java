@@ -108,6 +108,12 @@ public interface IMemberDao extends BaseMapper<Member> {
      */
     int fans(@Param("id") Integer id);
 
+    /**
+     * 收藏
+     * @param id
+     * @return
+     */
+    int collect(@Param("id") Integer id);
 
     /**
      * 获取私信中的联系人ID列表
