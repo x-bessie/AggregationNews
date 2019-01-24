@@ -38,6 +38,7 @@
         <result column="fans" jdbcType="INTEGER" property="fans" />
         <result column="is_vip" jdbcType="INTEGER" property="isVip" />
         <result column="member_level_id" jdbcType="INTEGER" property="memberLevelId" />
+        <result column="collect" jdbcType="INTEGER" property="collect" />
         <association property="memberLevel" column="member_level_id"  select="selectMemberLevel"></association>
     </resultMap>
     <resultMap id="memberWithMessageResult" type="Member">
@@ -166,6 +167,10 @@
     <!-- 关注后修改会员粉丝数 -->
     <update id="fans">
         update tbl_member set fans=(select COUNT(*) FROM tbl_member_fans where follow_who=#{id}) where id = #{id}
+    </update>
+    <!--收藏后的会员的收藏的新闻数-->
+    <update id="collect">
+        update tbl_member set collect=(select COUNT(*) FROM tbl_member_collect where who_collect=#{id}) where id = #{id}
     </update>
 
     <!-- 更新会员积分 -->
