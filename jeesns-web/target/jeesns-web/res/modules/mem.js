@@ -34,5 +34,42 @@ var mem = {
                 }
             }
         });
+    },
+    collect:function(_this,base){
+        var articleId=_this.attr("article-id");
+        $.ajax({
+            url:base+"/member/collect/"+articleId,
+            type: "get",
+            dataType: "json",
+            timeout: 5000,
+            success:function(res){
+                if(res.code < 0){
+                    jeesnsDialog.errorTips(res.message);
+                }else {
+                    if(res.code == 0){
+                        _this.html("<i class='fa fa-heart-o'></i> 收藏");
+                    }else if(res.code == 1){
+                        _this.html("<i class='fa fa-heart-o'></i> 已收藏");
+                    }
+                }
+            }
+        })
+    },
+    isCollect:function(articleId,base){
+        var _this=$(".member-collect");
+        $.ajax({
+            url: base+"/member/isCollect/"+articleId,
+            type: "get",
+            dataType: "json",
+            timeout: 5000,
+            success:function(res){
+                if(res.code == 0){
+                    _this.html("<i class='fa fa-heart-o'></i> 收藏");
+                }else if(res.code == 1){
+                    _this.html("<i class='fa fa-heart-o'></i> 已收藏");
+                }
+            }
+        });
     }
+
 }
