@@ -19,6 +19,7 @@
     <script src="${basePath}/res/plugins/layer/layer.js"></script>
     <script src="${basePath}/res/common/js/jquery.form.js"></script>
     <script src="${basePath}/res/front/js/jeesns.js?v1.4"></script>
+    <script src="${basePath}/res/modules/mem.js"></script>
     <link rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
@@ -51,7 +52,7 @@
                                 </a>
                                 <span class="label label-danger"><i
                                         class="icon-eye-open"></i> ${article.viewCount}</span>
-                                <#--<i class="icon icon-time"></i> ${article.createTime?string('yyyy-MM-dd HH:mm')}-->
+                            <#--<i class="icon icon-time"></i> ${article.createTime?string('yyyy-MM-dd HH:mm')}-->
                                 <i class="icon icon-time"></i> ${article.publishedAt}
                             </dd>
                             <dt></dt>
@@ -75,7 +76,7 @@
                         <#include "/tp/ad.ftl"/>
                     </@ads>
                     <section class="content">
-                        ${article.content}
+                    ${article.content}
                     </section>
                     <div class="text-left"><a href=${article.url} target="_blank">阅读全文</a>
                     </div>
@@ -88,8 +89,16 @@
                         <a class="btn btn-danger btn-article-favor article-favor" href="javascript:void(0)" article-id="${article.id}">
                             <i class="icon-heart"></i> 喜欢 | ${article.favor}
                         </a>
-                    </#if>
-                        <a class="btn btn-danger btn-article-collect article-collect ">收藏</a>
+                    </#if >
+
+                    <#--<a class="btn btn-danger btn-article-collect article-collect " member-id="${member.id}>-->
+                    </div>
+                    <div>
+                    <a class="label label-primary edit member-collect"  article-id="${article.id}">
+                        <i class="icon icon-heart-o"></i> 收藏
+                    </a>&nbsp;
+                    </div>
+
                 </article>
                 <@ads id=2>
                     <#include "/tp/ad.ftl"/>
@@ -120,29 +129,29 @@
                 </div>
             </div>
             <div class="col-sm-4 col-xs-12">
-                <#--<div class="panel">-->
-                    <#--<div class="panel-body weibo-author">-->
-                        <#--<div class="avatar">-->
-                            <#--<a href="${basePath}/u/${article.member.id}" target="_blank">-->
-                                <#--<img alt="image" class="img-circle mg-l-30" src="${basePath}${article.member.avatar}"/></a>-->
-                        <#--</div>-->
-                        <#--<div class="name">-->
-                            <#--<a href="${basePath}/u/${article.member.id}"-->
-                               <#--target="_blank">${article.member.name}</a>-->
-                        <#--</div>-->
-                        <#--<div class="info">-->
-                            <#--<p>-->
-                                <#--<a href="${basePath}/u/${article.member.id}/home/follows">${article.member.follows}-->
-                                    <#--关注</a> /-->
-                                <#--<a href="${basePath}/u/${article.member.id}/home/fans">${article.member.fans}-->
-                                    <#--粉丝</a>-->
-                            <#--</p>-->
-                            <#--<p>-->
-                            <#--${article.member.introduce}-->
-                            <#--</p>-->
-                        <#--</div>-->
-                    <#--</div>-->
-                <#--</div>-->
+            <#--<div class="panel">-->
+            <#--<div class="panel-body weibo-author">-->
+            <#--<div class="avatar">-->
+            <#--<a href="${basePath}/u/${article.member.id}" target="_blank">-->
+            <#--<img alt="image" class="img-circle mg-l-30" src="${basePath}${article.member.avatar}"/></a>-->
+            <#--</div>-->
+            <#--<div class="name">-->
+            <#--<a href="${basePath}/u/${article.member.id}"-->
+            <#--target="_blank">${article.member.name}</a>-->
+            <#--</div>-->
+            <#--<div class="info">-->
+            <#--<p>-->
+            <#--<a href="${basePath}/u/${article.member.id}/home/follows">${article.member.follows}-->
+            <#--关注</a> /-->
+            <#--<a href="${basePath}/u/${article.member.id}/home/fans">${article.member.fans}-->
+            <#--粉丝</a>-->
+            <#--</p>-->
+            <#--<p>-->
+            <#--${article.member.introduce}-->
+            <#--</p>-->
+            <#--</div>-->
+            <#--</div>-->
+            <#--</div>-->
                 <div class="panel">
                     <div class="panel-heading">
                         新闻栏目
@@ -204,6 +213,20 @@
         });
         $(".article-favor").click(function () {
             cms.favor($(this), "${basePath}")
+        });
+        <#--mem.isCollect(${article.id},"${basePath}");-->
+
+        <#--$(".member-collect").click(function () {-->
+            <#--mem.collect($(this),"${basePath}")-->
+        <#--});-->
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        mem.isCollect(${article.id}, "${basePath}");
+        $(".member-collect").click(function () {
+            mem.collect($(this), "${basePath}")
         });
     });
 </script>
