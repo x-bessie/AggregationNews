@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>回答管理 - ${SITE_NAME} - AggregationNews后台管理系统</title>
+    <title>回答管理 - ${SITE_NAME} - JEESNS后台管理系统 - Powered By JEESNS</title>
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
-    <meta name="author" content="Lina"/>
+    <meta name="author" content="JEESNS"/>
     <link href="${basePath}/res/common/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/res/common/css/font-awesome.min.css" rel="stylesheet">
     <link href="${basePath}/res/manage/css/AdminLTE.css" rel="stylesheet">

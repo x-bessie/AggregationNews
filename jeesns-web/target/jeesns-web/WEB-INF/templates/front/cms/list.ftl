@@ -12,7 +12,7 @@
     <link href="${basePath}/res/front/css/app.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="${basePath}/res/common/js/html5shiv.min.js"></script>
-    <script src="${basePath}/res/common/js/respond.min.js"></script>
+    <script src="${basweePath}/res/common/js/respond.min.js"></script>
     <![endif]-->
     <script src="${basePath}/res/common/js/jquery-2.1.1.min.js"></script>
     <script src="${basePath}/res/common/js/zui.min.js"></script>
@@ -74,11 +74,11 @@
                     </div>
                 </form>
                 <div class="panel">
-                    <div class="panel-heading">
-                        文章栏目
-                        <span class="pull-right">
-                            <a class="btn btn-primary right-btn m-t-n4" href="${basePath}/article/add">发布文章</a>
-                        </span>
+                    <div class="panel-heading">栏目
+                        <#--不设置发布文章-->
+                        <#--<span class="pull-right">-->
+                            <#--<a class="btn btn-primary right-btn m-t-n4" href="${basePath}/article/add">发布文章</a>-->
+                        <#--</span>-->
                     </div>
                     <div class="panel-body">
                         <a href="${basePath}/article/list" class="btn btn-primary">全部</a>
