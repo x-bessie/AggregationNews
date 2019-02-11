@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * Created by liaolina on 2019/1/12.
+ * Created by Lina.
  */
 public interface IMemberCollectDao extends BaseMapper<MemberCollect> {
 

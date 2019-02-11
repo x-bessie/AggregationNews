@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * 会员签到DAO
- * Created by zchuanzhao on 18/8/20.
+ * Created by Lina.
  */
 public interface ICheckinDao extends BaseMapper<Checkin> {
     List<Checkin> list(@Param("page") Page page, @Param("memberId") Integer memberId);

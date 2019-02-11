@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * 验证码DAO接口
- * Created by zchuanzhao on 17/01/20.
+ * Created by Lina.
  */
 public interface IValidateCodeDao extends BaseMapper<ValidateCode> {
 

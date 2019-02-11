@@ -6,7 +6,7 @@ import com.lxinet.jeesns.model.system.ScoreRule;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * Created by zchuanzhao on 2017/3/24.
+ * Created by Lina.
  */
 public interface IScoreRuleDao extends BaseMapper<ScoreRule> {
 

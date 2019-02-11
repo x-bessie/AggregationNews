@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * 文章评论DAO接口
- * Created by zchuanzhao on 2016/11/26.
+ * Created by Lina.
  */
 public interface IArticleCommentDao extends BaseMapper<ArticleComment> {
 

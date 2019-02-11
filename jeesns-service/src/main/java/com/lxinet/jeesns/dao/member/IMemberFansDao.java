@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 2017/2/16.
+ * Created by Lina.
  */
 public interface IMemberFansDao extends BaseMapper<MemberFans> {
 

@@ -2,7 +2,7 @@ package com.lxinet.jeesns.dao.common;
 
 
 /**
- * Created by zchuanzhao on 2017/2/6.
+ * Created by Lina.
  */
 public interface ICommonDao extends IBaseDao {
 

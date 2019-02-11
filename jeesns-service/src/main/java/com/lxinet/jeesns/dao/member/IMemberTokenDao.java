@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Date;
 
 /**
- * Created by zchuanzhao on 2017/7/15.
+ * Created by Lina.
  */
 public interface IMemberTokenDao extends BaseMapper<MemberToken> {
 

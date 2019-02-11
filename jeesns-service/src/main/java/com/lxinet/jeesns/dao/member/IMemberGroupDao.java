@@ -7,7 +7,7 @@ import com.lxinet.jeesns.model.member.MemGroup;
 
 /**
  * 会员分组DAO
- * Created by zchuanzhao on 16/9/26.
+ * Created by Lina.
  */
 public interface IMemberGroupDao extends BaseMapper<MemGroup> {
     

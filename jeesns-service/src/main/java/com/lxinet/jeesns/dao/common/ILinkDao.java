@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 2017-10-13.
+ * Created by Lina.
  */
 public interface ILinkDao extends BaseMapper<Link> {
 

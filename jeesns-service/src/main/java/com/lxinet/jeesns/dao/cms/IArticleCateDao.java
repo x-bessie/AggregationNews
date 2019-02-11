@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * 文章栏目DAO接口
- * Created by zchuanzhao on 2016/11/26.
+ * Created by Lina.
  */
 public interface IArticleCateDao extends BaseMapper<ArticleCate> {
 

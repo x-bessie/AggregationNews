@@ -6,7 +6,7 @@ import com.lxinet.jeesns.model.system.Action;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * Created by zchuanzhao on 2017/2/14.
+ * Created by Lina.
  */
 public interface IActionDao extends BaseMapper<Action> {
     int isenable(@Param("id") Integer id);

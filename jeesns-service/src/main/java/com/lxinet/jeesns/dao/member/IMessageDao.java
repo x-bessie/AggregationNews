@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 会员私信DAO
- * Created by zchuanzhao on 17/3/9.
+ * Created by Lina.
  */
 public interface IMessageDao extends BaseMapper<Message> {
     List<Message> list(@Param("page") Page page, @Param("fromMemberId") Integer fromMemberId, @Param("toMemberId") Integer toMemberId);

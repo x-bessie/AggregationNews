@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 会员DAO接口
- * Created by zchuanzhao on 16/9/26.
+ * Created by Lina.
  */
 public interface IMemberDao extends BaseMapper<Member> {
 
