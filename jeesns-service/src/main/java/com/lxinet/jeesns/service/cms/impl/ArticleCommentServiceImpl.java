@@ -1,5 +1,6 @@
 package com.lxinet.jeesns.service.cms.impl;
 
+import com.lxinet.jeesns.core.dto.ResultModel;
 import com.lxinet.jeesns.core.service.impl.BaseServiceImpl;
 import com.lxinet.jeesns.core.utils.ValidUtill;
 import com.lxinet.jeesns.core.consts.AppTag;
@@ -59,21 +60,21 @@ public class ArticleCommentServiceImpl extends BaseServiceImpl<ArticleComment> i
         articleComment.setArticleId(articleId);
         articleComment.setContent(content);
         boolean result = super.save(articleComment);
-        if(!result){
+        if (!result) {
             throw new OpeErrorException();
         }
         //@会员处理并发送系统消息
-        messageService.atDeal(loginMember.getId(),content, AppTag.CMS, MessageType.CMS_ARTICLE_COMMENT_REFER,articleComment.getId());
-        messageService.diggDeal(loginMember.getId(),article.getMemberId(),content,AppTag.CMS,MessageType.CMS_ARTICLR_REPLY,article.getId());
+        messageService.atDeal(loginMember.getId(), content, AppTag.CMS, MessageType.CMS_ARTICLE_COMMENT_REFER, articleComment.getId());
+        messageService.diggDeal(loginMember.getId(), article.getMemberId(), content, AppTag.CMS, MessageType.CMS_ARTICLR_REPLY, article.getId());
         //文章评论奖励
-        scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.ARTICLE_REVIEWS,articleComment.getId());
+        scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.ARTICLE_REVIEWS, articleComment.getId());
         return true;
     }
 
     @Override
     public List listByPage(Page page, int articleId, String key) {
-        if (StringUtils.isNotBlank(key)){
-            key = "%"+key+"%";
+        if (StringUtils.isNotBlank(key)) {
+            key = "%" + key + "%";
         }
         List<ArticleComment> list = articleCommentDao.list(page, articleId, key);
         this.atFormat(list);
@@ -85,26 +86,40 @@ public class ArticleCommentServiceImpl extends BaseServiceImpl<ArticleComment> i
         articleCommentDao.deleteByArticle(articleId);
     }
 
+    /**
+     * 用户添加已评价的新闻
+     * @param page
+     * @param memberId
+     * @return
+     */
+    @Override
+    public ResultModel commentList(Page page, Integer memberId) {
+        List<ArticleComment> list = articleCommentDao.commentList(page, memberId);
+        ResultModel model = new ResultModel(0, page);
+        model.setData(list);
+        return model; //此处添加
+    }
+
     @Override
     @Transactional
     public boolean delete(Member loginMember, int id) {
         boolean result = super.deleteById(id);
-        if(!result){
+        if (!result) {
             throw new OpeErrorException();
         }
         //扣除积分
-        scoreDetailService.scoreCancelBonus(loginMember.getId(), ScoreRuleConsts.ARTICLE_REVIEWS,id);
-        actionLogService.save(loginMember.getCurrLoginIp(),loginMember.getId(), ActionUtil.DELETE_ARTICLE_COMMENT,"ID："+id);
+        scoreDetailService.scoreCancelBonus(loginMember.getId(), ScoreRuleConsts.ARTICLE_REVIEWS, id);
+        actionLogService.save(loginMember.getCurrLoginIp(), loginMember.getId(), ActionUtil.DELETE_ARTICLE_COMMENT, "ID：" + id);
         return true;
     }
 
-    public ArticleComment atFormat(ArticleComment articleComment){
+    public ArticleComment atFormat(ArticleComment articleComment) {
         articleComment.setContent(memberService.atFormat(articleComment.getContent()));
         return articleComment;
     }
 
-    public List<ArticleComment> atFormat(List<ArticleComment> articleCommentList){
-        for (ArticleComment articleComment : articleCommentList){
+    public List<ArticleComment> atFormat(List<ArticleComment> articleCommentList) {
+        for (ArticleComment articleComment : articleCommentList) {
             atFormat(articleComment);
         }
         return articleCommentList;

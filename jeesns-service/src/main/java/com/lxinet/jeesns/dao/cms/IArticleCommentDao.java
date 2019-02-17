@@ -2,8 +2,10 @@ package com.lxinet.jeesns.dao.cms;
 
 import com.lxinet.jeesns.core.dao.BaseMapper;
 import com.lxinet.jeesns.core.model.Page;
+import com.lxinet.jeesns.model.cms.Article;
 import com.lxinet.jeesns.model.cms.ArticleComment;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -15,4 +17,7 @@ public interface IArticleCommentDao extends BaseMapper<ArticleComment> {
     List<ArticleComment> list(@Param("page") Page page, @Param("articleId") Integer articleId, @Param("key") String key);
 
     int deleteByArticle(@Param("articleId") Integer articleId);
+
+
+    List<ArticleComment> commentList(@Param("page") Page page, @Param("memberId") Integer memberId);
 }

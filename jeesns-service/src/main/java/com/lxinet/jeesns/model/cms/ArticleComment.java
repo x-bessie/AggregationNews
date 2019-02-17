@@ -26,7 +26,11 @@ public class ArticleComment implements Serializable {
     private Article article;
     @Column("member_id")
     private Integer memberId;
+    //需要左联的参数
+    private Article memberIdArticle;
+
     private Member member;
+
     @Column("content")
     private String content;
 
@@ -86,5 +90,13 @@ public class ArticleComment implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Article getMemberIdArticle() {
+        return memberIdArticle;
+    }
+
+    public void setMemberIdArticle(Article memberIdArticle) {
+        this.memberIdArticle = memberIdArticle;
     }
 }

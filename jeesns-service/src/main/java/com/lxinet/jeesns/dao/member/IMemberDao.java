@@ -116,6 +116,13 @@ public interface IMemberDao extends BaseMapper<Member> {
     int collect(@Param("id") Integer id);
 
     /**
+     * 新闻评论
+     * @param id
+     * @return
+     */
+    int comment(@Param("id") Integer id);
+
+    /**
      * 获取私信中的联系人ID列表
      * @param page
      * @param memberId

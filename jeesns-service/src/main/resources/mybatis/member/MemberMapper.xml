@@ -2,47 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lxinet.jeesns.dao.member.IMemberDao">
     <resultMap id="RemberResult" type="Member">
-        <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="group_id" jdbcType="INTEGER" property="groupId" />
-        <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="email" jdbcType="VARCHAR" property="email" />
-        <result column="phone" jdbcType="VARCHAR" property="phone" />
-        <result column="password" jdbcType="VARCHAR" property="password" />
-        <result column="sex" jdbcType="VARCHAR" property="sex" />
-        <result column="avatar" jdbcType="VARCHAR" property="avatar" />
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-        <result column="regip" jdbcType="VARCHAR" property="regip" />
-        <result column="login_count" jdbcType="INTEGER" property="loginCount" />
-        <result column="curr_login_time" jdbcType="TIMESTAMP" property="currLoginTime" />
-        <result column="curr_login_ip" jdbcType="VARCHAR" property="currLoginIp" />
-        <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
-        <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-        <result column="money" jdbcType="DOUBLE" property="money" />
-        <result column="score" jdbcType="INTEGER" property="score" />
-        <result column="is_active" jdbcType="INTEGER" property="isActive" />
-        <result column="status" jdbcType="INTEGER" property="status" />
-        <result column="birthday" jdbcType="VARCHAR" property="birthday" />
-        <result column="addprovince" jdbcType="VARCHAR" property="addprovince" />
-        <result column="addcity" jdbcType="VARCHAR" property="addcity" />
-        <result column="addarea" jdbcType="VARCHAR" property="addarea" />
-        <result column="address" jdbcType="VARCHAR" property="address" />
-        <result column="qq" jdbcType="VARCHAR" property="qq" />
-        <result column="wechat" jdbcType="VARCHAR" property="wechat" />
-        <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
-        <result column="contact_email" jdbcType="VARCHAR" property="contactEmail" />
-        <result column="website" jdbcType="VARCHAR" property="website" />
-        <result column="introduce" jdbcType="VARCHAR" property="introduce" />
-        <result column="is_admin" jdbcType="INTEGER" property="isAdmin" />
-        <result column="follows" jdbcType="INTEGER" property="follows" />
-        <result column="fans" jdbcType="INTEGER" property="fans" />
-        <result column="is_vip" jdbcType="INTEGER" property="isVip" />
-        <result column="member_level_id" jdbcType="INTEGER" property="memberLevelId" />
-        <result column="collect" jdbcType="INTEGER" property="collect" />
-        <association property="memberLevel" column="member_level_id"  select="selectMemberLevel"></association>
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="regip" jdbcType="VARCHAR" property="regip"/>
+        <result column="login_count" jdbcType="INTEGER" property="loginCount"/>
+        <result column="curr_login_time" jdbcType="TIMESTAMP" property="currLoginTime"/>
+        <result column="curr_login_ip" jdbcType="VARCHAR" property="currLoginIp"/>
+        <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+        <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="money" jdbcType="DOUBLE" property="money"/>
+        <result column="score" jdbcType="INTEGER" property="score"/>
+        <result column="is_active" jdbcType="INTEGER" property="isActive"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="birthday" jdbcType="VARCHAR" property="birthday"/>
+        <result column="addprovince" jdbcType="VARCHAR" property="addprovince"/>
+        <result column="addcity" jdbcType="VARCHAR" property="addcity"/>
+        <result column="addarea" jdbcType="VARCHAR" property="addarea"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="qq" jdbcType="VARCHAR" property="qq"/>
+        <result column="wechat" jdbcType="VARCHAR" property="wechat"/>
+        <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone"/>
+        <result column="contact_email" jdbcType="VARCHAR" property="contactEmail"/>
+        <result column="website" jdbcType="VARCHAR" property="website"/>
+        <result column="introduce" jdbcType="VARCHAR" property="introduce"/>
+        <result column="is_admin" jdbcType="INTEGER" property="isAdmin"/>
+        <result column="follows" jdbcType="INTEGER" property="follows"/>
+        <result column="fans" jdbcType="INTEGER" property="fans"/>
+        <result column="is_vip" jdbcType="INTEGER" property="isVip"/>
+        <result column="member_level_id" jdbcType="INTEGER" property="memberLevelId"/>
+        <result column="collect" jdbcType="INTEGER" property="collect"/>
+        <result column="comment" jdbcType="INTEGER" property="comment"/>
+        <association property="memberLevel" column="member_level_id" select="selectMemberLevel"></association>
     </resultMap>
     <resultMap id="memberWithMessageResult" type="Member">
-        <collection property="messages" javaType="ArrayList" column="{from_member_id=from_member_id,to_member_id=to_member_id}" ofType="Message" select="selectUnreadMessagesByMember"/>
+        <collection property="messages" javaType="ArrayList"
+                    column="{from_member_id=from_member_id,to_member_id=to_member_id}" ofType="Message"
+                    select="selectUnreadMessagesByMember"/>
     </resultMap>
 
     <!-- 会员登录 -->
@@ -171,6 +174,11 @@
     <!--收藏后的会员的收藏的新闻数-->
     <update id="collect">
         update tbl_member set collect=(select COUNT(*) FROM tbl_member_collect where who_collect=#{id}) where id = #{id}
+    </update>
+
+    <!--评论的新闻数量-->
+    <update id="comment">
+        update tbl_member set comment=(select COUNT(*) FROM tbl_article_comment where member_id=#{id}) where id = #{id}
     </update>
 
     <!-- 更新会员积分 -->

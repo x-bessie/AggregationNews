@@ -26,4 +26,11 @@
   <delete id="deleteByArticle" parameterType="java.lang.Integer">
     delete from tbl_article_comment where article_id = #{articleId}
   </delete>
+
+  <!--<select id="commentList" resultMap="ArticleCommentResult">-->
+    <!--select a.member_id,a.create_time,a.article_id AS article_id,b.id as  'memberIdArticle.id',b.title AS 'memberIdArticle.title' FROM tbl_article_comment AS a LEFT JOIN tbl_article AS b ON a.article_id = b.id WHERE a.member_id =#{memberId}-->
+  <!--</select>-->
+  <select id="commentList" resultMap="ArticleCommentResult">
+    select a.member_id,a.create_time,a.article_id AS article_id,b.id as  'memberIdArticle.id',b.title AS 'memberIdArticle.title' FROM tbl_article_comment AS a LEFT JOIN tbl_article AS b ON a.article_id = b.id WHERE a.member_id =#{memberId}
+  </select>
 </mapper>

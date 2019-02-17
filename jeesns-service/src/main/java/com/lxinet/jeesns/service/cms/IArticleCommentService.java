@@ -1,5 +1,6 @@
 package com.lxinet.jeesns.service.cms;
 
+import com.lxinet.jeesns.core.dto.ResultModel;
 import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.core.service.IBaseService;
 import com.lxinet.jeesns.model.cms.ArticleComment;
@@ -20,4 +21,14 @@ public interface IArticleCommentService extends IBaseService<ArticleComment> {
     List<ArticleComment> listByPage(Page page, int articleId, String key);
 
     void deleteByArticle(Integer articleId);
+
+    /**
+     * 用户添加新闻评论
+     *
+     * @param page
+     * @param memberId
+     * @return
+     */
+    ResultModel commentList(Page page, Integer memberId);
+
 }
