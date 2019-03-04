@@ -13,8 +13,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="${basePath}/">首页</a></li>
                 <li><a href="${basePath}/article/list">新闻</a></li>
-                <li><a href="${weiboPath}/list">${WEIBO_ALIAS}</a></li>
-                <li><a href="${groupPath}/">${GROUP_ALIAS}</a></li>
+                <#--<li><a href="${weiboPath}/list">${WEIBO_ALIAS}</a></li>-->
+                <#--<li><a href="${groupPath}/">${GROUP_ALIAS}</a></li>-->
+                <li><a href="/group/">搜索</a></li>
                 <#--<li><a href="${basePath}/question/">问答</a></li>-->
                 <li><a href="${basePath}/action/list">动态</a></li>
                 <#--<li><a href="${basePath}/picture/">图库</a></li>-->
