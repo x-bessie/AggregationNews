@@ -33,7 +33,7 @@
         <div class="row m-t-10">
             <div class="col-sm-2 col-xs-12">
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="${basePath}/u/${member.id}">动态</a></li>
+                    <li class="list-group-item"><a href="${basePath}/u/${member.id}">选择的新闻分类</a></li>
                 <#--<li class="list-group-item"><a href="${basePath}/picture/album/${member.id}">相册</a></li>-->
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/fans">粉丝</a></li>
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/follows">关注</a></li>
@@ -48,7 +48,7 @@
                 <div class="col-xs-12 white-bg">
                     <div class="list list-condensed">
                         <header>
-                            <h3><i class="icon-list-ul"></i> 动态</h3>
+                            <h3><i class="icon-list-ul"></i> 选择的新闻分类</h3>
                         </header>
                         <div class="items items-hover">
                             <#list actionLogModel.data as actionLog>
