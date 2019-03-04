@@ -5,7 +5,6 @@ import org.apache.commons.io.IOUtils;
 import javax.net.ssl.*;
 import java.io.*;
 import java.net.HttpURLConnection;
-
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.cert.CertificateException;
@@ -14,18 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-
-import sun.net.www.protocol.https.Handler;
-
 /**
- * http帮助类
+ * http帮助类,用户请求接口用
  */
 public class HttpRequestUtil {
     public static Logger logger = Logger.getLogger(HttpRequestUtil.class.getName());
@@ -65,6 +54,7 @@ public class HttpRequestUtil {
             while ((line = in.readLine()) != null) {
                 result += line;
             }
+
         } catch (Exception e) {
             logger.info("GET发送异常！" + e);
             e.printStackTrace();
@@ -104,6 +94,7 @@ public class HttpRequestUtil {
             conn.setRequestProperty("connection", "Keep-Alive");
             conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
 
+
             conn.connect();
 
             //获取URLConnection对象对应的输出流
@@ -118,6 +109,7 @@ public class HttpRequestUtil {
             while ((line = in.readLine()) != null) {
                 result += line;
             }
+//            System.out.println("获取的结果为：" + result);
         } catch (Exception e) {
             logger.info("POST 请求发送异常！");
             e.printStackTrace();
@@ -228,7 +220,7 @@ public class HttpRequestUtil {
             } else {
                 urlStr = this._url + "?" + getParamStr();
             }
-//            System.out.println("GET请求的URL为：" + urlStr);
+            System.out.println("GET请求的URL为：" + urlStr);
             SSLContext sc = SSLContext.getInstance("SSL");
             sc.init(null, new TrustManager[]{new TrustAnyTrustManager()}, new java.security.SecureRandom());
             URL realUrl = new URL(urlStr);
@@ -239,11 +231,13 @@ public class HttpRequestUtil {
 //            connection.setHostnameVerifier(new TrustAnyHostnameVerifier());
             connection.setDoOutput(true);
 
+
             // 设置通用的请求属性
             connection.setRequestProperty("accept", "*/*");
             connection.setRequestProperty("connection", "Keep-Alive");
             connection.setRequestProperty("user-agent",
                     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+
             // 建立实际的连接
             connection.connect();
 
@@ -276,6 +270,7 @@ public class HttpRequestUtil {
 
     private String getParamStr() {
         String paramStr = "";
+
         // 获取所有响应头字段
         Map<String, String> params = this._params;
         if (params == null || params.size() == 0) {
@@ -292,23 +287,36 @@ public class HttpRequestUtil {
     }
 
     public static void main(String[] args) {
-        HttpRequestUtil testBaidu = new HttpRequestUtil();
+//        HttpRequestUtil httpRequestUtil = new HttpRequestUtil();
+//
+//        try {
+//
+////            String urladdress = "https://newsapi.org/v2/everything?";
+//            String urladdress = "https://newsapi.org/v2/top-headlines";
+//            Map<String, String> map = new HashMap<String, String>();
+//
+////            map.put("country","cn");
+//            map.put("apiKey", "2c2b3417e7584cb2abcf19564789864d");
+//
+//            map.put("q", "全国人大");
+////            testBaidu.HttpsGetData(url, map);
+////            testBaidu.Do();
+////            StringBuffer sb = new StringBuffer();
+////            for (String key : map.keySet()) {
+////                sb.append(key + "=" + map.get(key));
+////            }
+////            String result = httpRequestUtil.sendGet(urladdress.trim(), sb.toString().trim());
+////            System.out.println(urladdress+sb.toString());
+//            httpRequestUtil.HttpsGetData(urladdress.trim(), map);
+//
+//            String result = httpRequestUtil.Do();
+//            System.out.println(result);
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//        HttpRequestUtil httpRequestUtil=new HttpRequestUtil();
+//        String url="https://newsapi.org/v2/everything?";
 
-        try {
-//            String url = "https://www.baidu.com/s";
 
-            String url = "https://newsapi.org/v2/everything";
-            Map<String, String> map = new HashMap<String, String>();
-
-            map.put("q", "bitcoin");
-
-            map.put("apiKey", "2c2b3417e7584cb2abcf19564789864d");
-            testBaidu.HttpsGetData(url, map);
-//            testBaidu.Do();
-            String result=testBaidu.Do();
-            System.out.println(result);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 }

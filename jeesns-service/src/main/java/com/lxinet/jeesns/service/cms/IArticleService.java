@@ -15,7 +15,7 @@ import java.util.List;
 public interface IArticleService extends IBaseService<Article> {
 
 
-    Article findById(int id,Member loginMember);
+    Article findById(int id, Member loginMember);
 
     boolean save(Member member, Article article);
 
@@ -31,7 +31,5 @@ public interface IArticleService extends IBaseService<Article> {
 
     ResultModel favor(Member loginMember, int articleId);
 
-    List<Article> listByCustom(int cid,String sort,int num,int day,int thumbnail);
-
-//    ResultModel collect(Member loginMember,int articleId);
+    List<Article> listByCustom(int cid, String sort, int num, int day, int thumbnail);
 }

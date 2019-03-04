@@ -1,5 +1,9 @@
 package com.lxinet.jeesns.web.front;
 
+import com.lxinet.jeesns.model.cms.ArticleCate;
+import com.lxinet.jeesns.service.cms.IArticleCateService;
+import com.lxinet.jeesns.service.cms.IArticleService;
+import com.lxinet.jeesns.utils.KeyRequest;
 import com.lxinet.jeesns.utils.MemberUtil;
 import com.lxinet.jeesns.core.exception.ParamException;
 import com.lxinet.jeesns.interceptor.UserLoginInterceptor;
@@ -13,6 +17,7 @@ import com.lxinet.jeesns.service.group.*;
 import com.lxinet.jeesns.web.common.BaseController;
 import com.lxinet.jeesns.model.member.Member;
 import com.lxinet.jeesns.service.member.IMemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,11 +27,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 16/12/26.
+ * Created by Lina.
  */
 @Controller("frontGroupController")
-@RequestMapping("/${groupPath}")
+//@RequestMapping("/${groupPath}")
+@RequestMapping("/group")
+
 public class GroupController extends BaseController {
+    @Autowired  //单元测试
     @Resource
     private JeesnsConfig jeesnsConfig;
     @Resource
@@ -45,8 +53,12 @@ public class GroupController extends BaseController {
     private IMemberService memberService;
     @Resource
     private IGroupTypeService groupTypeService;
+    @Resource
+    private IArticleService articleService;
+    @Resource
+    private IArticleCateService articleCateService;
 
-    @RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(String key, Model model) {
         List<Group> list = groupService.list(1, key);
         model.addAttribute("list", list);
@@ -58,7 +70,7 @@ public class GroupController extends BaseController {
     @Before(UserLoginInterceptor.class)
     public String apply(Model model) {
         List<GroupType> groupTypeList = groupTypeService.list();
-        model.addAttribute("groupTypeList",groupTypeList);
+        model.addAttribute("groupTypeList", groupTypeList);
         return jeesnsConfig.getFrontTemplate() + "/group/apply";
     }
 
@@ -165,7 +177,7 @@ public class GroupController extends BaseController {
             }
         }
         List<GroupType> groupTypeList = groupTypeService.list();
-        model.addAttribute("groupTypeList",groupTypeList);
+        model.addAttribute("groupTypeList", groupTypeList);
         model.addAttribute("managerNames", newManagerNames);
         model.addAttribute("loginUser", loginMember);
         return jeesnsConfig.getFrontTemplate() + "/group/edit";
@@ -568,6 +580,30 @@ public class GroupController extends BaseController {
             resultModel.setCode(3);
         }
         return resultModel;
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String list(String key, @RequestParam(value = "cid", defaultValue = "0", required = false) Integer cid,
+                       @RequestParam(value = "memberId", defaultValue = "0", required = false) Integer memberId, Model model) {
+        if (StringUtils.isNotEmpty(key)) {
+            key = new String(key.getBytes());
+        }
+        //加一个http请求爬取
+        KeyRequest keyRequest = new KeyRequest();
+        try {
+            keyRequest.getEveryP(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Page page = new Page(request);
+        ResultModel resultModel = articleService.listByPage(page, key, cid, 1, memberId);
+        model.addAttribute("model", resultModel);
+        List<ArticleCate> articleCateList = articleCateService.list();
+        model.addAttribute("articleCateList", articleCateList);
+        ArticleCate articleCate = articleCateService.findById(cid);
+        model.addAttribute("articleCate", articleCate);
+        return jeesnsConfig.getFrontTemplate() + "/group/index";
     }
 
 }
