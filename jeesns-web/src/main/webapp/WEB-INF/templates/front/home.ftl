@@ -42,6 +42,7 @@
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/article">文章</a></li>
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/group">关注群组</a></li>
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/collect">收藏的新闻</a></li>
+                    <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/comment">已评论的新闻</a></li>
                 </ul>
             </div>
             <div class="col-sm-10 col-xs-12">
@@ -57,10 +58,12 @@
                                             粉丝
                             <#elseif type=="follows">
                                             关注
-                            <#elseif type=="group">
-                                            关注群组
+                            <#--<#elseif type=="group">-->
+                                            <#--关注群组-->
                             <#elseif type=="collect">
                                             收藏的新闻
+                            <#elseif type=="comment">
+                                            已评论的新闻
                             </#if>
                             </h3>
                         </header>
@@ -203,7 +206,26 @@
 
                                 </#list>
                                 <ul class="pager pagination pagination-sm no-margin pull-right"
-                                    url="${basePath}/u/${member.id}/home/follows"
+                                    url="${basePath}/u/${member.id}/home/collect"
+                                    currentPage="${model.page.pageNo}"
+                                    pageCount="${model.page.totalPage}">
+                                </ul>
+                             <#elseif  type=="comment">
+                                 <#list model.data as ArticleComment>
+                                    <div class="item">
+                                        <div class="item-heading">
+                                            <div class="pull-right"><span
+                                                    class="text-muted">${ArticleComment.createTime?string('yyyy-MM-dd HH:mm')}</span>
+                                            </div>
+                                            <h4>
+                                                <a href="${basePath}/article/detail/${ArticleComment.memberIdArticle.id}">${ArticleComment.memberIdArticle.title}</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                 </#list>
+                                <ul class="pager pagination pagination-sm no-margin pull-right"
+                                    url="${basePath}/u/${member.id}/home/comment"
                                     currentPage="${model.page.pageNo}"
                                     pageCount="${model.page.totalPage}">
                                 </ul>

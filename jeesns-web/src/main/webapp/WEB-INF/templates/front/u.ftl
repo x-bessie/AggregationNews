@@ -39,8 +39,9 @@
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/follows">关注</a></li>
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/article">文章</a></li>
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/groupTopic">群帖</a></li>
-                    <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/weibo">微博</a></li>
+                    <#--<li class="list-group-item"><a href="${basePath}/u/${member.id}/home/weibo">微博</a></li>-->
                     <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/group">关注群组</a></li>
+                    <li class="list-group-item"><a href="${basePath}/u/${member.id}/home/comment">已评论的新闻</a></li>
                 </ul>
             </div>
             <div class="col-sm-10 col-xs-12">

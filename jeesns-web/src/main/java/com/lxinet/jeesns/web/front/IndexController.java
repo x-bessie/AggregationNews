@@ -1,6 +1,7 @@
 package com.lxinet.jeesns.web.front;
 
 import com.lxinet.jeesns.core.utils.StringUtils;
+import com.lxinet.jeesns.service.cms.IArticleCommentService;
 import com.lxinet.jeesns.service.cms.IArticleService;
 import com.lxinet.jeesns.service.common.IArchiveService;
 import com.lxinet.jeesns.service.member.IMemberCollectService;
@@ -61,6 +62,9 @@ public class IndexController extends BaseController{
     @Resource
     private IMemberCollectService memberCollectService;
 
+    @Resource
+    private IArticleCommentService articleCommentService;
+
     @RequestMapping(value={"/", "index"},method = RequestMethod.GET)
     public String index(@RequestParam(value = "key",required = false,defaultValue = "") String key, Integer cateid,Model model) {
         Page page = new Page(request);
@@ -120,6 +124,9 @@ public class IndexController extends BaseController{
             model.addAttribute("model", memberCollectService.followsList(page,id));
         } else if("fans".equals(type)){
             model.addAttribute("model", memberFansService.fansList(page,id));
+        }else if ("comment".equals(type)){
+            model.addAttribute("model", articleCommentService.commentList(page,id));
+
         }
         model.addAttribute("type",type);
         return jeesnsConfig.getFrontTemplate() + "/home";
