@@ -211,11 +211,11 @@ public class ArticleController extends BaseController {
         ResultModel resultModel = articleService.favor(loginMember,id);
         return resultModel;
     }
-    /**
-     * 文章：收藏功能
-     * @param id
-     * @retuen
-     */
+//    /**
+//     * 文章：收藏功能
+//     * @param id
+//     * @retuen
+//     */
 //    @RequestMapping(value="/collect/{id}",method = RequestMethod.GET)
 //    @ResponseBody
 //    @Before(UserLoginInterceptor.class)
@@ -228,3 +228,4 @@ public class ArticleController extends BaseController {
 //        return resultModel;
 //    }
 }
+
