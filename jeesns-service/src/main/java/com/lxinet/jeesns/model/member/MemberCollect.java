@@ -24,7 +24,9 @@ public class MemberCollect implements Serializable {
     @Column("collect_new")
     private Integer collectNew;
 
+    //联表用
     private Article collectWhatNews;
+
     @Column("who_collect")
     private Integer whoCollect;
 //    private Member whoFollowMember;

@@ -50,43 +50,46 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
     @Resource
     private IMemberCollectService memberCollectService;
 
+    @Resource
+    private IMemberClassificationService memberClassificationService;
+
     @Override
     public boolean login(Member member, HttpServletRequest request) {
-        Map<String,String> config = configService.getConfigToMap();
-        if("0".equals(config.get(ConfigUtil.MEMBER_LOGIN_OPEN))){
+        Map<String, String> config = configService.getConfigToMap();
+        if ("0".equals(config.get(ConfigUtil.MEMBER_LOGIN_OPEN))) {
             throw new OpeErrorException("登录功能已关闭");
         }
         String password = member.getPassword();
         member.setPassword(Md5Util.getMD5Code(member.getPassword()));
         Member findMember = memberDao.login(member);
-        if (null == findMember){
-            actionLogService.save(IpUtil.getIpAddress(request),null,ActionUtil.MEMBER_LOGIN_ERROR,"登录用户名："+member.getName()+"，登录密码："+password);
+        if (null == findMember) {
+            actionLogService.save(IpUtil.getIpAddress(request), null, ActionUtil.MEMBER_LOGIN_ERROR, "登录用户名：" + member.getName() + "，登录密码：" + password);
             throw new OpeErrorException("用户名或者密码错误");
         }
-        if(findMember.getStatus() == -1){
+        if (findMember.getStatus() == -1) {
             throw new OpeErrorException("账号已被禁用");
         }
         //登录成功更新状态
         memberDao.loginSuccess(findMember.getId(), IpUtil.getIpAddress(request));
         findMember = this.findById(findMember.getId());
-        MemberUtil.setLoginMember(request,findMember);
-        actionLogService.save(findMember.getCurrLoginIp(),findMember.getId(), ActionUtil.MEMBER_LOGIN);
+        MemberUtil.setLoginMember(request, findMember);
+        actionLogService.save(findMember.getCurrLoginIp(), findMember.getId(), ActionUtil.MEMBER_LOGIN);
         //登录奖励
         scoreDetailService.scoreBonus(findMember.getId(), ScoreRuleConsts.LOGIN);
         return true;
     }
 
     @Override
-    public Member manageLogin(Member member,HttpServletRequest request) {
+    public Member manageLogin(Member member, HttpServletRequest request) {
         String password = member.getPassword();
         member.setPassword(Md5Util.getMD5Code(member.getPassword()));
         Member findMember = memberDao.manageLogin(member);
-        if(findMember != null){
+        if (findMember != null) {
             //登录成功更新状态
             memberDao.loginSuccess(findMember.getId(), IpUtil.getIpAddress(request));
             findMember = this.findById(findMember.getId());
-        }else {
-            actionLogService.save(IpUtil.getIpAddress(request),null,ActionUtil.MEMBER_LOGIN_ERROR,"登录用户名："+member.getName()+"，登录密码："+password);
+        } else {
+            actionLogService.save(IpUtil.getIpAddress(request), null, ActionUtil.MEMBER_LOGIN_ERROR, "登录用户名：" + member.getName() + "，登录密码：" + password);
         }
         return findMember;
     }
@@ -99,51 +102,51 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
     @Override
     @Transactional
     public ResultModel register(Member member, HttpServletRequest request) {
-        if(memberDao.findByName(member.getName()) != null){
+        if (memberDao.findByName(member.getName()) != null) {
             throw new OpeErrorException("用户名已存在");
         }
-        if(memberDao.findByEmail(member.getEmail()) != null){
+        if (memberDao.findByEmail(member.getEmail()) != null) {
             throw new OpeErrorException("邮箱已存在");
         }
         member.setRegip(IpUtil.getIpAddress(request));
         member.setPassword(Md5Util.getMD5Code(member.getPassword()));
         member.setAvatar(Const.DEFAULT_AVATAR);
-        if(memberDao.register(member) == 1){
-            actionLogService.save(member.getRegip(),member.getId(),ActionUtil.MEMBER_REG);
+        if (memberDao.register(member) == 1) {
+            actionLogService.save(member.getRegip(), member.getId(), ActionUtil.MEMBER_REG);
             //注册奖励
-            scoreDetailService.scoreBonus(member.getId(),ScoreRuleConsts.REG_INIT);
-            return new ResultModel(2,"注册成功",request.getServletContext().getContextPath()+"/member/login");
+            scoreDetailService.scoreBonus(member.getId(), ScoreRuleConsts.REG_INIT);
+            return new ResultModel(2, "注册成功", request.getServletContext().getContextPath() + "/member/login");
         }
-        return new ResultModel(-1,"注册失败");
+        return new ResultModel(-1, "注册失败");
     }
 
 
     @Override
     public ResultModel delete(int id) {
-        if(super.deleteById(id)){
-            return new ResultModel(1,"删除成功");
+        if (super.deleteById(id)) {
+            return new ResultModel(1, "删除成功");
         }
-        return new ResultModel(-1,"删除失败");
+        return new ResultModel(-1, "删除失败");
     }
 
     @Override
     public ResultModel<Member> listByPage(Page page, String key) {
-        if (StringUtils.isNotBlank(key)){
-            key = "%"+key.trim()+"%";
+        if (StringUtils.isNotBlank(key)) {
+            key = "%" + key.trim() + "%";
         }
         List<Member> list = memberDao.list(page, key);
-        ResultModel model = new ResultModel(0,page);
+        ResultModel model = new ResultModel(0, page);
         model.setData(list);
         return model;
     }
 
     @Override
     public ResultModel<Member> managerList(Page page, String key) {
-        if (StringUtils.isNotBlank(key)){
-            key = "%"+key.trim()+"%";
+        if (StringUtils.isNotBlank(key)) {
+            key = "%" + key.trim() + "%";
         }
         List<Member> list = memberDao.managerList(page, key);
-        ResultModel model = new ResultModel(0,page);
+        ResultModel model = new ResultModel(0, page);
         model.setData(list);
         return model;
     }
@@ -152,78 +155,81 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
     public ResultModel managerAdd(Member loginMember, String name) {
         int isAdmin = 1;
         Member findMember = this.findByName(name);
-        if(findMember == null){
-            return new ResultModel(-1,"会员["+name+"]不存在");
+        if (findMember == null) {
+            return new ResultModel(-1, "会员[" + name + "]不存在");
         }
         //为了旧系统升级使用
-        if(findMember.getId() == 1 && findMember.getIsAdmin() == 1){
+        if (findMember.getId() == 1 && findMember.getIsAdmin() == 1) {
             isAdmin = 2;
         }
-        if(isAdmin == 1 && loginMember.getId().intValue() == findMember.getId().intValue()){
-            return new ResultModel(-1,"不能操作自己的账号");
+        if (isAdmin == 1 && loginMember.getId().intValue() == findMember.getId().intValue()) {
+            return new ResultModel(-1, "不能操作自己的账号");
         }
-        if(isAdmin != 2 && findMember.getIsAdmin() > 0){
-            return new ResultModel(-1,"会员["+name+"]已经是管理员，无需再授权");
+        if (isAdmin != 2 && findMember.getIsAdmin() > 0) {
+            return new ResultModel(-1, "会员[" + name + "]已经是管理员，无需再授权");
         }
         //管理员只能对授权为普通管理员
-        memberDao.managerAddAndCancel(isAdmin,findMember.getId());
-        if(isAdmin == 2){
+        memberDao.managerAddAndCancel(isAdmin, findMember.getId());
+        if (isAdmin == 2) {
             loginMember.setIsAdmin(isAdmin);
         }
-        return new ResultModel(3,"操作成功");
+        return new ResultModel(3, "操作成功");
     }
 
     @Override
     public ResultModel managerCancel(Member loginMember, int id) {
         Member findMember = this.findById(id);
-        if(loginMember.getId().intValue() == findMember.getId().intValue()){
-            return new ResultModel(-1,"不能操作自己的账号");
+        if (loginMember.getId().intValue() == findMember.getId().intValue()) {
+            return new ResultModel(-1, "不能操作自己的账号");
         }
-        if(findMember == null){
-            return new ResultModel(-1,"会员不存在");
+        if (findMember == null) {
+            return new ResultModel(-1, "会员不存在");
         }
-        memberDao.managerAddAndCancel(0,findMember.getId());
-        return new ResultModel(1,"操作成功");
+        memberDao.managerAddAndCancel(0, findMember.getId());
+        return new ResultModel(1, "操作成功");
     }
 
 
     /**
      * 会员启用、禁用操作
+     *
      * @param id
      * @return
      */
     @Override
     public ResultModel isenable(int id) {
-        if(memberDao.isenable(id) == 1){
-            return new ResultModel(1,"操作成功");
+        if (memberDao.isenable(id) == 1) {
+            return new ResultModel(1, "操作成功");
         }
-        return new ResultModel(-1,"操作失败");
+        return new ResultModel(-1, "操作失败");
     }
 
     /**
      * 后台修改密码
+     *
      * @param id
      * @param password
      * @return
      */
     @Override
     public ResultModel changepwd(Member loginMember, int id, String password) {
-        if(StringUtils.isBlank(password)){
+        if (StringUtils.isBlank(password)) {
             throw new OpeErrorException("密码不能为空");
         }
-        if(password.length() < 6){
-            return new ResultModel(-1,"密码不能少于6个字符");
+        if (password.length() < 6) {
+            return new ResultModel(-1, "密码不能少于6个字符");
         }
         password = Md5Util.getMD5Code(password);
-        if(memberDao.changepwd(id,password) == 1){
-            actionLogService.save(loginMember.getCurrLoginIp(),loginMember.getId(),ActionUtil.CHANGE_PWD);
-            return new ResultModel(3,"密码修改成功");
+        if (memberDao.changepwd(id, password) == 1) {
+            actionLogService.save(loginMember.getCurrLoginIp(), loginMember.getId(), ActionUtil.CHANGE_PWD);
+            return new ResultModel(3, "密码修改成功");
         }
-        return new ResultModel(-1,"密码修改失败");
+        return new ResultModel(-1, "密码修改失败");
     }
 
     /**
      * 会员修改密码
+     *
      * @param loginMember
      * @param oldPassword
      * @param newPassword
@@ -231,22 +237,23 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
      */
     @Override
     public ResultModel changepwd(Member loginMember, String oldPassword, String newPassword) {
-        if(StringUtils.isBlank(newPassword)){
+        if (StringUtils.isBlank(newPassword)) {
             throw new OpeErrorException("密码不能为空");
         }
-        if(newPassword.length() < 6){
-            return new ResultModel(-1,"密码不能少于6个字符");
+        if (newPassword.length() < 6) {
+            return new ResultModel(-1, "密码不能少于6个字符");
         }
         oldPassword = Md5Util.getMD5Code(oldPassword);
         Member member = super.findById(loginMember.getId());
-        if(!oldPassword.equals(member.getPassword())){
-            return new ResultModel(-1,"旧密码错误");
+        if (!oldPassword.equals(member.getPassword())) {
+            return new ResultModel(-1, "旧密码错误");
         }
-        return this.changepwd(loginMember,member.getId(),newPassword);
+        return this.changepwd(loginMember, member.getId(), newPassword);
     }
 
     /**
      * 修改头像
+     *
      * @param member
      * @param oldAvatar 旧头像
      * @param request
@@ -254,52 +261,54 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
      */
     @Override
     public ResultModel updateAvatar(Member member, String oldAvatar, HttpServletRequest request) {
-        int result = memberDao.updateAvatar(member.getId(),member.getAvatar());
-        if(result == 1){
-            if(StringUtils.isNotEmpty(oldAvatar) && !Const.DEFAULT_AVATAR.equals(oldAvatar)){
+        int result = memberDao.updateAvatar(member.getId(), member.getAvatar());
+        if (result == 1) {
+            if (StringUtils.isNotEmpty(oldAvatar) && !Const.DEFAULT_AVATAR.equals(oldAvatar)) {
                 //头像真实路径
                 String realPath = request.getServletContext().getRealPath(oldAvatar);
                 //删除旧头像
                 File file = new File(realPath);
-                if(file.exists()){
+                if (file.exists()) {
                     file.delete();
                 }
             }
-            return new ResultModel(0,"头像修改成功");
+            return new ResultModel(0, "头像修改成功");
         }
-        return new ResultModel(-1,"头像修改失败，请重试");
+        return new ResultModel(-1, "头像修改失败，请重试");
     }
 
     /**
      * 修改会员基本信息
-     * @param member 登录会员
-     * @param name  昵称
-     * @param sex  性别
-     * @param introduce  个人说明
+     *
+     * @param member    登录会员
+     * @param name      昵称
+     * @param sex       性别
+     * @param introduce 个人说明
      * @return
      */
     @Override
     public ResultModel editBaseInfo(Member member, String name, String sex, String introduce) {
-        if(!StringUtils.checkNickname(member.getName())){
-            return new ResultModel(-1,"昵称只能由中文、字母、数字、下划线(_)或者短横线(-)组成");
+        if (!StringUtils.checkNickname(member.getName())) {
+            return new ResultModel(-1, "昵称只能由中文、字母、数字、下划线(_)或者短横线(-)组成");
         }
-        if (name != null && !name.equals(member.getName())){
-            if(this.findByName(name) != null){
-                return new ResultModel(-1,"昵称已被占用，请更换一个");
+        if (name != null && !name.equals(member.getName())) {
+            if (this.findByName(name) != null) {
+                return new ResultModel(-1, "昵称已被占用，请更换一个");
             }
         }
         member.setName(name);
         member.setSex(sex);
         member.setIntroduce(introduce);
-        if(memberDao.editBaseInfo(member) == 1){
-            return new ResultModel(0,"修改成功");
+        if (memberDao.editBaseInfo(member) == 1) {
+            return new ResultModel(0, "修改成功");
         }
-        return new ResultModel(-1,"修改失败");
+        return new ResultModel(-1, "修改失败");
     }
 
     /**
      * 修改会员其他信息
-     * @param loginMember 登录会员
+     *
+     * @param loginMember  登录会员
      * @param birthday
      * @param qq
      * @param wechat
@@ -317,10 +326,10 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
         loginMember.setContactPhone(contactPhone);
         loginMember.setContactEmail(contactEmail);
         loginMember.setWebsite(website);
-        if(memberDao.editOtherInfo(loginMember) == 1){
-            return new ResultModel(0,"修改成功");
+        if (memberDao.editOtherInfo(loginMember) == 1) {
+            return new ResultModel(0, "修改成功");
         }
-        return new ResultModel(-1,"修改失败");
+        return new ResultModel(-1, "修改失败");
     }
 
     @Override
@@ -331,17 +340,17 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
     @Override
     public ResultModel sendEmailActiveValidCode(Member loginMember, HttpServletRequest request) {
         loginMember = this.findById(loginMember.getId());
-        if(loginMember.getIsActive() == 1){
-            return new ResultModel(-1,"您的账号已经激活，无需重复激活");
+        if (loginMember.getIsActive() == 1) {
+            return new ResultModel(-1, "您的账号已经激活，无需重复激活");
         }
         String randomCode = RandomCodeUtil.randomCode6();
-        ValidateCode validateCode = new ValidateCode(loginMember.getEmail(),randomCode,2);
-        if(validateCodeService.save(validateCode)){
-            if(EmailSendUtil.activeMember(request, loginMember.getEmail(),randomCode)){
-                return new ResultModel(0,"邮件发送成功");
+        ValidateCode validateCode = new ValidateCode(loginMember.getEmail(), randomCode, 2);
+        if (validateCodeService.save(validateCode)) {
+            if (EmailSendUtil.activeMember(request, loginMember.getEmail(), randomCode)) {
+                return new ResultModel(0, "邮件发送成功");
             }
         }
-        return new ResultModel(-1,"邮件发送失败，请重试");
+        return new ResultModel(-1, "邮件发送失败，请重试");
     }
 
     @Transactional
@@ -349,114 +358,114 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
     public ResultModel active(Member loginMember, String randomCode, HttpServletRequest request) {
         try {
             loginMember = this.findById(loginMember.getId());
-            if(loginMember.getIsActive() == 1){
-                return new ResultModel(-1,"您的账号已经激活，无需重复激活");
+            if (loginMember.getIsActive() == 1) {
+                return new ResultModel(-1, "您的账号已经激活，无需重复激活");
             }
-            ValidateCode validateCode = validateCodeService.valid(loginMember.getEmail(),randomCode,2);
-            if(validateCode == null){
-                return new ResultModel(-1,"验证码错误");
+            ValidateCode validateCode = validateCodeService.valid(loginMember.getEmail(), randomCode, 2);
+            if (validateCode == null) {
+                return new ResultModel(-1, "验证码错误");
             }
 
-            if(validateCodeService.used(validateCode.getId())){
-                if(memberDao.active(loginMember.getId()) == 1){
+            if (validateCodeService.used(validateCode.getId())) {
+                if (memberDao.active(loginMember.getId()) == 1) {
                     loginMember.setIsActive(1);
-                    MemberUtil.setLoginMember(request,loginMember);
+                    MemberUtil.setLoginMember(request, loginMember);
                     //邮箱认证奖励
                     scoreDetailService.scoreBonus(loginMember.getId(), ScoreRuleConsts.EMAIL_AUTHENTICATION);
-                    return new ResultModel(2,"激活成功，正在进入会员中心...",request.getContextPath()+"/member/");
+                    return new ResultModel(2, "激活成功，正在进入会员中心...", request.getContextPath() + "/member/");
                 }
             }
-            return new ResultModel(-1,"激活失败，请重试");
-        }catch (Exception e){
+            return new ResultModel(-1, "激活失败，请重试");
+        } catch (Exception e) {
             e.printStackTrace();
-            return new ResultModel(-1,"激活失败，请重试");
+            return new ResultModel(-1, "激活失败，请重试");
         }
     }
 
     @Override
     public Member findByNameAndEmail(String name, String email) {
-        return memberDao.findByNameAndEmail(name,email);
+        return memberDao.findByNameAndEmail(name, email);
     }
 
     @Override
     public ResultModel forgetpwd(String name, String email, HttpServletRequest request) {
-        Member member = this.findByNameAndEmail(name,email);
-        if(member == null){
-            return new ResultModel(-1,"会员不存在");
+        Member member = this.findByNameAndEmail(name, email);
+        if (member == null) {
+            return new ResultModel(-1, "会员不存在");
         }
         String randomCode = RandomCodeUtil.uuid();
-        ValidateCode validateCode = new ValidateCode(email,randomCode,1);
-        if(validateCodeService.save(validateCode)){
-            if(EmailSendUtil.forgetpwd(request, email,randomCode)){
-                return new ResultModel(0,"邮件发送成功");
+        ValidateCode validateCode = new ValidateCode(email, randomCode, 1);
+        if (validateCodeService.save(validateCode)) {
+            if (EmailSendUtil.forgetpwd(request, email, randomCode)) {
+                return new ResultModel(0, "邮件发送成功");
             }
         }
-        return new ResultModel(-1,"邮件发送失败，请重试");
+        return new ResultModel(-1, "邮件发送失败，请重试");
     }
 
     @Transactional
     @Override
     public ResultModel resetpwd(String email, String token, String password, HttpServletRequest request) {
         Member member = memberDao.findByEmail(email);
-        if(member == null){
-            return new ResultModel(-1,"会员不存在");
+        if (member == null) {
+            return new ResultModel(-1, "会员不存在");
         }
-        ValidateCode validateCode = validateCodeService.valid(email,token,1);
-        if(validateCode == null){
-            return new ResultModel(-1,"验证码错误");
+        ValidateCode validateCode = validateCodeService.valid(email, token, 1);
+        if (validateCode == null) {
+            return new ResultModel(-1, "验证码错误");
         }
         password = Md5Util.getMD5Code(password);
-        if(memberDao.changepwd(member.getId(),password) == 1){
+        if (memberDao.changepwd(member.getId(), password) == 1) {
             validateCodeService.used(validateCode.getId());
-            actionLogService.save(IpUtil.getIpAddress(request),member.getId(), ActionUtil.FIND_PWD);
-            return new ResultModel(2,"密码重置成功",request.getContextPath()+"/member/login");
+            actionLogService.save(IpUtil.getIpAddress(request), member.getId(), ActionUtil.FIND_PWD);
+            return new ResultModel(2, "密码重置成功", request.getContextPath() + "/member/login");
         }
-        return new ResultModel(-1,"密码重置失败");
+        return new ResultModel(-1, "密码重置失败");
     }
 
     @Transactional
     @Override
     public ResultModel follows(Member loginMember, Integer followWhoId) {
-        if(loginMember == null){
+        if (loginMember == null) {
             throw new NotLoginException();
         }
-        if(this.findById(followWhoId) == null){
-            return new ResultModel(-1,"关注的会员不存在");
+        if (this.findById(followWhoId) == null) {
+            return new ResultModel(-1, "关注的会员不存在");
         }
-        if(loginMember.getId().intValue() == followWhoId.intValue()){
-            return new ResultModel(-1,"不能关注自己");
+        if (loginMember.getId().intValue() == followWhoId.intValue()) {
+            return new ResultModel(-1, "不能关注自己");
         }
-        if(memberFansService.find(loginMember.getId(),followWhoId) == null){
+        if (memberFansService.find(loginMember.getId(), followWhoId) == null) {
             //关注
-            memberFansService.save(loginMember.getId(),followWhoId);
+            memberFansService.save(loginMember.getId(), followWhoId);
             memberDao.follows(loginMember.getId());
             memberDao.fans(followWhoId);
-            return new ResultModel(1,"关注成功");
-        }else {
+            return new ResultModel(1, "关注成功");
+        } else {
             //取消关注
-            memberFansService.delete(loginMember.getId(),followWhoId);
+            memberFansService.delete(loginMember.getId(), followWhoId);
             memberDao.follows(loginMember.getId());
             memberDao.fans(followWhoId);
-            return new ResultModel(0,"取消关注成功");
+            return new ResultModel(0, "取消关注成功");
         }
     }
 
     @Override
     public ResultModel isFollowed(Member loginMember, Integer followWhoId) {
         int loginMemberId = 0;
-        if(loginMember != null){
+        if (loginMember != null) {
             loginMemberId = loginMember.getId().intValue();
         }
-        if(memberFansService.find(loginMemberId,followWhoId) == null){
-            return new ResultModel(0,"未关注");
-        }else {
-            return new ResultModel(1,"已关注");
+        if (memberFansService.find(loginMemberId, followWhoId) == null) {
+            return new ResultModel(0, "未关注");
+        } else {
+            return new ResultModel(1, "已关注");
         }
     }
 
     @Override
     public ResultModel collect(Member loginMember, Integer collectNewId) {
-        if(loginMember == null){
+        if (loginMember == null) {
             throw new NotLoginException();
         }
 //        if(this.findById(collectNewId) == null){
@@ -465,31 +474,44 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
 //        if(loginMember.getId().intValue() == collectNewId.intValue()){
 //            return new ResultModel(-1,"不能收藏自己");
 //        }
-        if(memberCollectService.find(loginMember.getId(),collectNewId) == null){
+        if (memberCollectService.find(loginMember.getId(), collectNewId) == null) {
             //关注
-            memberCollectService.save(loginMember.getId(),collectNewId);
+            memberCollectService.save(loginMember.getId(), collectNewId);
+            //用户添加收藏新闻的数量统计
             memberDao.collect(loginMember.getId());
-            return new ResultModel(1,"收藏成功");
-        }else {
+            return new ResultModel(1, "收藏成功");
+        } else {
             //取消关注
-            memberCollectService.delete(loginMember.getId(),collectNewId);
+            memberCollectService.delete(loginMember.getId(), collectNewId);
             memberDao.collect(loginMember.getId());
-            return new ResultModel(0,"取消收藏成功");
+            return new ResultModel(0, "取消收藏成功");
         }
     }
 
     @Override
     public ResultModel isCollect(Member loginMember, Integer collectNewId) {
         int loginMemberId = 0;
-        if(loginMember != null){
+        if (loginMember != null) {
             loginMemberId = loginMember.getId().intValue();
         }
-        if(memberCollectService.find(loginMemberId,collectNewId) == null){
-            return new ResultModel(0,"未关注");
-        }else {
-            return new ResultModel(1,"已关注");
+        if (memberCollectService.find(loginMemberId, collectNewId) == null) {
+            return new ResultModel(0, "未关注");
+        } else {
+            return new ResultModel(1, "已关注");
         }
     }
+
+    @Override
+    public ResultModel classificationSave(Member loginMember, String classification) {
+        //判断登录状态
+        if (loginMember == null) {
+            throw new NotLoginException();
+        }
+        memberClassificationService.save(loginMember.getId(),classification);
+
+        return null;
+    }
+
 
     @Override
     public List<Member> listContactMemberIds(Page page, Integer memberId) {
@@ -500,27 +522,28 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
 
     /**
      * 获取私信中的联系人列表
+     *
      * @param page
      * @param memberId
      * @return
      */
     @Override
     public ResultModel<Member> listContactMembers(Page page, Integer memberId) {
-        List<Member> memberIdList = this.listContactMemberIds(page,memberId);
+        List<Member> memberIdList = this.listContactMemberIds(page, memberId);
         List<Member> list = new ArrayList<>();
-        if(memberIdList.size() > 0){
+        if (memberIdList.size() > 0) {
             List<Integer> idList = new ArrayList<>();
             String idString = "";
-            for (Member member : memberIdList){
-                if (member != null){
+            for (Member member : memberIdList) {
+                if (member != null) {
                     idList.add(member.getId());
                     idString += member.getId() + ",";
                 }
             }
-            if (idString.length() > 0){
-                idString = idString.substring(0,idString.length()-1);
+            if (idString.length() > 0) {
+                idString = idString.substring(0, idString.length() - 1);
             }
-            if (StringUtils.isNotEmpty(idString)){
+            if (StringUtils.isNotEmpty(idString)) {
                 list = memberDao.listContactMembers(memberId, idList, idString);
             }
         }
@@ -531,33 +554,35 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
 
     /**
      * 更新会员积分
+     *
      * @param score
      * @param memberId
      * @return
      */
     @Override
     public boolean updateScore(Integer score, Integer memberId) {
-        return memberDao.updateScore(score,memberId) == 1;
+        return memberDao.updateScore(score, memberId) == 1;
     }
 
     /**
      * 更新会员余额
+     *
      * @param money
      * @param memberId
      * @return
      */
     @Override
     public boolean updateMoney(Double money, Integer memberId) {
-        return memberDao.updateMoney(money,memberId) == 1;
+        return memberDao.updateMoney(money, memberId) == 1;
     }
 
     @Override
     public String atFormat(String content) {
         List<String> nameList = AtUtil.getAtNameList(content);
-        for (String name : nameList){
+        for (String name : nameList) {
             Member member = this.findByName(name);
-            if (member != null){
-                content = AtUtil.replaceAt(content,name,member.getId());
+            if (member != null) {
+                content = AtUtil.replaceAt(content, name, member.getId());
             }
         }
         return content;

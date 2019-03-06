@@ -109,7 +109,7 @@ public interface IMemberDao extends BaseMapper<Member> {
     int fans(@Param("id") Integer id);
 
     /**
-     * 收藏
+     * 收藏数量统计
      * @param id
      * @return
      */

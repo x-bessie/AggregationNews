@@ -166,6 +166,10 @@ public interface IMemberService extends IBaseService<Member> {
      */
     ResultModel isCollect(Member loginMember, Integer collectNewId);
 
+
+    //
+    ResultModel classificationSave(Member loginMember,String classification);
+
     /**
      * 获取私信中的联系人列表
      * @param page
@@ -199,4 +203,6 @@ public interface IMemberService extends IBaseService<Member> {
     boolean updateMoney(Double money, Integer memberId);
 
     String atFormat(String content);
+
+
 }
