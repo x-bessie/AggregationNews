@@ -35,12 +35,55 @@
                         <h3><i class="icon-list-ul"></i> 选择喜欢的新闻分类</h3>
                     </header>
                     <div class="items items-hover">
-                        <#list actionLogModel.data as actionLog>
+                        <#--<#list actionLogModel.data as actionLog>-->
 
                         <div class="item">
                             <div class="item-heading">
-                                <div class="pull-right"><span class="text-muted">${actionLog.createTime?string('yyyy-MM-dd HH:mm:ss')}</span></div>
-                                <h4><a href="${basePath}/u/${actionLog.member.id}"><strong>${actionLog.member.name}</strong></a> ${actionLog.action.log}：</h4>
+                                <#--<div class="pull-right"><span class="text-muted">${actionLog.createTime?string('yyyy-MM-dd HH:mm:ss')}</span></div>-->
+                                <#--<h4><a href="${basePath}/u/${actionLog.member.id}"><strong>${actionLog.member.name}</strong></a> ${actionLog.action.log}：</h4>-->
+                                <form class="form-horizontal jeesns_form" role="form" action="${basePath}/member/save" method="post" onsubmit="ckUpdate();">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="1" name="classification"> 财经
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="2" name="classification"> 娱乐
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="3" name="classification"> 综合
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="4" name="classification"> 健康
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="5" name="classification"> 科学
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="6" name="classification"> 运动
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="7" name="classification" > 科技
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="8" name="classification"> 技术
+                                        </label>
+                                    </div>
+                                    <button type="submit"  class="btn btn-primary">提交</button>
+                                </form>
                             </div>
                             <#--<div class="item-content">-->
                                 <#--<div class="text">-->
@@ -57,26 +100,9 @@
                                      <#--</#if>-->
                                 <#--</div>-->
                             <#--</div>-->
-                            <div class="panel-body">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> 全部
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <#list articleCateList as articleCate>
-                                            <input type="checkbox">${articleCate.name}
-                                        </#list>
-                                    </label>
-                                </div>
-
-
-
-                            </div>
 
                         </div>
-                        </#list>
+                        <#--</#list>-->
                         <ul class="pager pagination pagination-sm no-margin pull-right"
                             url="${basePath}/member/"
                             currentPage="${actionLogModel.page.pageNo}"
