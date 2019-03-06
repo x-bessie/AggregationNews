@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxinet.jeesns.dao.member.IMemberClassificationDao">
+    <resultMap id="MemberClassificationResult" type="MemberClassification">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="m_id" jdbcType="INTEGER" property="mId"/>
+        <result column="classification" jdbcType="INTEGER" property="classification"/>
+    </resultMap>
+
+
+    <!--用户根据用户ID查找-->
+    <!--<select id="find" resultMap="MemberClassificationResult">-->
+    <!--select * from tbl_member_classification where m_id=#{mId}-->
+    <!--</select>-->
+    <!--用户根据用户ID删除-->
+    <!--<delete id="delete" parameterType="java.lang.Integer">-->
+    <!--delete from tbl_member_classification where m_id=#{mId}-->
+    <!--</delete>-->
+
+    <!--用户选择喜欢的新闻分类-->
+    <insert id="save" parameterType="MemberClassification">
+    insert into tbl_member_classification(m_id,classification) values(#{mId},#{classification})
+  </insert>
+    <!--<update id="update">-->
+        <!--update tbl_member_classification(classification) values ()-->
+    <!--</update>-->
+
+</mapper>
