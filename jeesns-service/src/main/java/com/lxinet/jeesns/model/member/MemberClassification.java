@@ -17,7 +17,7 @@ public class MemberClassification {
     @Column("m_id")
     private Integer mId;
     @Column("classification")
-    private String classification;
+    private Integer classification;
     //暂时不用
     private Member member;
 
@@ -30,13 +30,6 @@ public class MemberClassification {
     }
 
 
-    public String getClassification() {
-        return classification;
-    }
-
-    public void setClassification(String classification) {
-        this.classification = classification;
-    }
 
     public Integer getmId() {
         return mId;
@@ -52,6 +45,14 @@ public class MemberClassification {
 
     public void setMember(Member member) {
         this.member = member;
+    }
+
+    public Integer getClassification() {
+        return classification;
+    }
+
+    public void setClassification(Integer classification) {
+        this.classification = classification;
     }
 
     @Override

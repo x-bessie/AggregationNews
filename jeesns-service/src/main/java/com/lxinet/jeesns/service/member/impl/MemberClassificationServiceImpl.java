@@ -20,7 +20,7 @@ public class MemberClassificationServiceImpl extends BaseServiceImpl<MemberClass
     private IMemberClassificationDao memberClassificationDao;
 
     @Override
-    public Integer save(Integer mId, String classification) {
+    public Integer save(Integer mId, Integer classification) {
         return memberClassificationDao.save(mId, classification);
     }
 

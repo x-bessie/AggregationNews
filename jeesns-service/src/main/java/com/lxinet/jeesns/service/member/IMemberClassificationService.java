@@ -13,7 +13,7 @@ public interface IMemberClassificationService extends IBaseService<MemberClassif
 //
 //    Integer delete(Integer mId);
 
-    Integer save(Integer mId, String classification);
+    Integer save(Integer mId, Integer classification);
 
 //    boolean update(String Classification, Integer mId);
 }

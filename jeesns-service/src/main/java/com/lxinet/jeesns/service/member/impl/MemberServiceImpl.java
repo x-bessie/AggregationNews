@@ -502,7 +502,7 @@ public class MemberServiceImpl extends BaseServiceImpl<Member> implements IMembe
     }
 
     @Override
-    public ResultModel classificationSave(Member loginMember, String classification) {
+    public ResultModel classificationSave(Member loginMember, Integer classification) {
         //判断登录状态
         if (loginMember == null) {
             throw new NotLoginException();

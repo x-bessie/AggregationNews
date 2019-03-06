@@ -10,7 +10,7 @@ public interface IMemberClassificationDao extends BaseMapper<MemberClassificatio
 //
 //    Integer delete(@Param("mId") Integer mId);
 
-    Integer save(@Param("mId") Integer mId, @Param("classification") String classification);
+    Integer save(@Param("mId") Integer mId, @Param("classification") Integer classification);
 
 //    boolean update(@Param("Classification") String Classification, @Param("mId") Integer mId);
 }

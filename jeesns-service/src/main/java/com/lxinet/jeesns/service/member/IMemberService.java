@@ -168,7 +168,7 @@ public interface IMemberService extends IBaseService<Member> {
 
 
     //
-    ResultModel classificationSave(Member loginMember,String classification);
+    ResultModel classificationSave(Member loginMember,Integer classification);
 
     /**
      * 获取私信中的联系人列表
