@@ -4,7 +4,7 @@
     <resultMap id="MemberClassificationResult" type="MemberClassification">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="m_id" jdbcType="INTEGER" property="mId"/>
-        <result column="classification" jdbcType="VARCHAR" property="classification"/>
+        <result column="classification" jdbcType="INTEGER" property="classification"/>
     </resultMap>
 
 
