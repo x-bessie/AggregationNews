@@ -1,5 +1,7 @@
 package com.lxinet.jeesns.web.front;
 
+import com.lxinet.jeesns.model.member.MemberClassification;
+import com.lxinet.jeesns.service.member.IMemberClassificationService;
 import com.lxinet.jeesns.service.member.IMemberCollectService;
 import com.lxinet.jeesns.utils.MemberUtil;
 import com.lxinet.jeesns.core.enums.Messages;
@@ -48,6 +50,8 @@ public class ArticleController extends BaseController {
     private IArticleCommentService articleCommentService;
     @Resource
     private IMemberCollectService memberCollectService;
+    @Resource
+    private IMemberClassificationService memberClassificationService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(String key, @RequestParam(value = "cid", defaultValue = "0", required = false) Integer cid,
@@ -66,6 +70,7 @@ public class ArticleController extends BaseController {
         model.addAttribute("articleCateList", articleCateList);
         ArticleCate articleCate = articleCateService.findById(cid);
         model.addAttribute("articleCate", articleCate);
+
         return jeesnsConfig.getFrontTemplate() + "/cms/list";
     }
 

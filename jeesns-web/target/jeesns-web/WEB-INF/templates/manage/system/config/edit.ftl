@@ -48,10 +48,10 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">基本设置</a>
                     </li>
-                    <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">会员设置</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false">CMS设置</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-4" aria-expanded="false">微博设置</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-5" aria-expanded="false">群组设置</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">用户设置</a></li>
+                    <#--<li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false">CMS设置</a></li>-->
+                    <#--<li class=""><a data-toggle="tab" href="#tab-4" aria-expanded="false">微博设置</a></li>-->
+                    <#--<li class=""><a data-toggle="tab" href="#tab-5" aria-expanded="false">群组设置</a></li>-->
                 </ul>
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane active">

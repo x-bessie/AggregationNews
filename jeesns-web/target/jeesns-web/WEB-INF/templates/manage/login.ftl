@@ -55,8 +55,8 @@
     <div class='success'>
     </div>
     <div class='disclaimer'>
-        <p>欢迎登陆JEESNS后台管理系统 <a href="../">返回首页</a></p>
-        <p>Powered By <a href="http://www.jeesns.cn" target="_blank">JEESNS</a> CopyRight © 2012-2017</p>
+        <p>欢迎登陆Aggregation后台管理系统 <a href="../">返回首页</a></p>
+        <p>Powered By Lina </p>
     </div>
 </div>
 <div class='authent'>

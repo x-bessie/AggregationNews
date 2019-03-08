@@ -438,8 +438,7 @@ public class MemberController extends BaseController {
 
         ResultModel resultModel = new ResultModel(memberService.classificationSave(loginMember,memberClassification.getClassification()));
 
-        resultModel.setUrl(request.getContextPath() + "/");
-
+        resultModel.setUrl(request.getContextPath() + "/index");
 
         return resultModel;
     }

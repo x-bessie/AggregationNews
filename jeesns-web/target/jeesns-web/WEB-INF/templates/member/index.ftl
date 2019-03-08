@@ -43,43 +43,44 @@
                                 <#--<h4><a href="${basePath}/u/${actionLog.member.id}"><strong>${actionLog.member.name}</strong></a> ${actionLog.action.log}：</h4>-->
                                 <form class="form-horizontal jeesns_form" role="form" action="${basePath}/member/save" method="post" onsubmit="ckUpdate();">
                                     <div class="checkbox">
+                                        <h4> 选择一个最喜欢的新闻分类</h4>
                                         <label>
-                                            <input type="checkbox" value="1" name="classification"> 财经
+                                            <input type="radio" value="1" name="classification"> 财经
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="2" name="classification"> 娱乐
+                                            <input type="radio" value="2" name="classification"> 娱乐
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="3" name="classification"> 综合
+                                            <input type="radio" value="3" name="classification"> 综合
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="4" name="classification"> 健康
+                                            <input type="radio" value="4" name="classification"> 健康
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="5" name="classification"> 科学
+                                            <input type="radio" value="5" name="classification"> 科学
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="6" name="classification"> 运动
+                                            <input type="radio" value="6" name="classification"> 运动
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="7" name="classification" > 科技
+                                            <input type="radio" value="7" name="classification" > 科技
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="8" name="classification"> 技术
+                                            <input type="radio" value="8" name="classification"> 技术
                                         </label>
                                     </div>
                                     <button type="submit"  class="btn btn-primary">提交</button>

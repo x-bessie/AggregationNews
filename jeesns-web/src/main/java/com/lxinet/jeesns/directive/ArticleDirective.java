@@ -11,7 +11,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 2017/5/18.
+ * 用户文章首页的list
+ * Created by Lina.
  */
 @Component
 public class ArticleDirective extends BaseDirective {

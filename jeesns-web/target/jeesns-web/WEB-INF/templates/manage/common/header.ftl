@@ -1,6 +1,6 @@
 <header class="main-header">
-    <a href="http://www.jeesns.cn" class="logo" target="_blank">
-        <span class="logo-mini"><b>JEE</b></span>
+    <a href="localhost:8090/mamage/index" class="logo" target="_blank">
+        <#--<span class="logo-mini"><b>JEE</b></span>-->
         <span class="logo-lg"><b>Lina</b></span>
     </a>
     <nav class="navbar navbar-static-top">
@@ -59,8 +59,8 @@
                     <li><a href="${managePath}/system/config/edit" module="system"><i class="fa fa-circle-o"></i>系统设置</a></li>
                     <li><a href="${managePath}/system/scoreRule/list" module="system"><i class="fa fa-circle-o"></i>积分规则</a></li>
                     <li><a href="${managePath}/system/action/list" module="system"><i class="fa fa-circle-o"></i>动态类型</a></li>
-                    <li><a href="${managePath}/system/action/actionLogList" module="system"><i class="fa fa-circle-o"></i>会员日志</a></li>
-                    <li><a href="${managePath}/system/action/memberActionLog" module="system"><i class="fa fa-circle-o"></i>会员动态</a></li>
+                    <li><a href="${managePath}/system/action/actionLogList" module="system"><i class="fa fa-circle-o"></i>用户日志</a></li>
+                    <#--<li><a href="${managePath}/system/action/memberActionLog" module="system"><i class="fa fa-circle-o"></i>会员动态</a></li>-->
                 </ul>
             </li>
             <li class="treeview" module="cms">
@@ -76,7 +76,7 @@
             </li>
             <li class="treeview" module="member">
                 <a href="#">
-                    <i class="fa fa-user"></i> <span>会员管理</span>
+                    <i class="fa fa-user"></i> <span>用户管理</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
@@ -98,25 +98,25 @@
                     <#--<li><a href="${managePath}/question/list" module="question"><i class="fa fa-circle-o"></i>问答管理</a></li>-->
                 <#--</ul>-->
             <#--</li>-->
-            <li class="treeview" module="group">
-                <a href="#">
-                    <i class="fa fa-group"></i> <span>群组管理</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="${managePath}/group/type/list" module="group"><i class="fa fa-circle-o"></i>分类管理</a></li>
-                    <li><a href="${managePath}/group/index" module="group"><i class="fa fa-circle-o"></i>群组列表</a></li>
-                </ul>
-            </li>
-            <li class="treeview" module="weibo">
-                <a href="#">
-                    <i class="fa fa-weibo"></i> <span>微博管理</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="${managePath}/weibo/index" module="weibo"><i class="fa fa-circle-o"></i>微博列表</a></li>
-                </ul>
-            </li>
+            <#--<li class="treeview" module="group">-->
+                <#--<a href="#">-->
+                    <#--<i class="fa fa-group"></i> <span>群组管理</span>-->
+                    <#--<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>-->
+                <#--</a>-->
+                <#--<ul class="treeview-menu">-->
+                    <#--<li><a href="${managePath}/group/type/list" module="group"><i class="fa fa-circle-o"></i>分类管理</a></li>-->
+                    <#--<li><a href="${managePath}/group/index" module="group"><i class="fa fa-circle-o"></i>群组列表</a></li>-->
+                <#--</ul>-->
+            <#--</li>-->
+            <#--<li class="treeview" module="weibo">-->
+                <#--<a href="#">-->
+                    <#--<i class="fa fa-weibo"></i> <span>微博管理</span>-->
+                    <#--<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>-->
+                <#--</a>-->
+                <#--<ul class="treeview-menu">-->
+                    <#--<li><a href="${managePath}/weibo/index" module="weibo"><i class="fa fa-circle-o"></i>微博列表</a></li>-->
+                <#--</ul>-->
+            <#--</li>-->
             <#--<li class="treeview" module="picture">-->
                 <#--<a href="#">-->
                     <#--<i class="fa fa-picture-o"></i> <span>图库管理</span>-->
@@ -133,7 +133,7 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="localhost:5000" target="_blank"><i class="fa fa-circle-o"></i>爬虫任务监控</a></li>
+                    <li><a href="http://localhost:5000" target="_blank"><i class="fa fa-circle-o"></i>爬虫任务监控</a></li>
                 </ul>
             </li>
         </ul>

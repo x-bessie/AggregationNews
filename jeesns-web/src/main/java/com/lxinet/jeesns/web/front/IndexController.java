@@ -4,6 +4,7 @@ import com.lxinet.jeesns.core.utils.StringUtils;
 import com.lxinet.jeesns.service.cms.IArticleCommentService;
 import com.lxinet.jeesns.service.cms.IArticleService;
 import com.lxinet.jeesns.service.common.IArchiveService;
+import com.lxinet.jeesns.service.member.IMemberClassificationService;
 import com.lxinet.jeesns.service.member.IMemberCollectService;
 import com.lxinet.jeesns.utils.EmojiUtil;
 import com.lxinet.jeesns.utils.MemberUtil;
@@ -64,6 +65,8 @@ public class IndexController extends BaseController{
 
     @Resource
     private IArticleCommentService articleCommentService;
+    @Resource
+    private IMemberClassificationService memberClassificationService;
 
     @RequestMapping(value={"/", "index"},method = RequestMethod.GET)
     public String index(@RequestParam(value = "key",required = false,defaultValue = "") String key, Integer cateid,Model model) {
@@ -72,7 +75,12 @@ public class IndexController extends BaseController{
             cateid = 0;
         }
         Member loginMember = MemberUtil.getLoginMember(request);
-        int loginMemberId = loginMember == null ? 0 : loginMember.getId();
+//        int loginMemberId = loginMember == null ? 0 : loginMember.getId();
+        //登录不为空的时候展示选择的分类
+        if (loginMember!=null){
+            ResultModel  classModel=memberClassificationService.findByClassification(page,loginMember.getId());
+            model.addAttribute("classModel",classModel);
+        }
         ResultModel linkModel = linkService.recommentList();
         page.setPageSize(50);
         model.addAttribute("linkModel",linkModel);

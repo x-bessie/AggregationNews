@@ -38,13 +38,13 @@
                             <#list articleList as article>
                                 <div class="item">
                                     <div class="item-content article">
-                                        <div class="media pull-left">
-                                        <#if article.thumbnail??>
-                                            <a href="${basePath}/article/detail/${article.id}">
-                                                <img src="${basePath}${article.thumbnail}" alt="${article.title}" height="150px" width="220px">
-                                            </a>
-                                        </#if>
-                                        </div>
+                                        <#--<div class="media pull-left">-->
+                                        <#--&lt;#&ndash;<#if article.thumbnail??>&ndash;&gt;-->
+                                            <#--&lt;#&ndash;<a href="${basePath}/article/detail/${article.id}">&ndash;&gt;-->
+                                                <#--&lt;#&ndash;<img src="${basePath}${article.thumbnail}" alt="${article.title}" height="150px" width="220px">&ndash;&gt;-->
+                                            <#--&lt;#&ndash;</a>&ndash;&gt;-->
+                                        <#--&lt;#&ndash;</#if>&ndash;&gt;-->
+                                        <#--</div>-->
                                         <div class="item-heading">
                                             <h3><a class="title" href="${basePath}/article/detail/${article.id}">${article.title}</a></h3>
                                         </div>
