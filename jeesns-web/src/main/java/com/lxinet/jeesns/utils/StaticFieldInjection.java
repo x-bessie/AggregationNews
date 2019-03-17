@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 /**
- * @author zchuanzhao
+ * @author Lina
  */
 @Component
 public class StaticFieldInjection {

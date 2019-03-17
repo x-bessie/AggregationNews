@@ -11,7 +11,7 @@ import javax.servlet.ServletContextListener;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 2017/5/25.
+ * Created by Lina
  */
 public class InitListener implements ServletContextListener {
 
