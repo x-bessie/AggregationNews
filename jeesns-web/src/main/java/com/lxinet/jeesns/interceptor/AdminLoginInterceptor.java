@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 /**
- * Created by zchuanzhao on 16/11/25.
+ * Created by Lina
  */
 public class AdminLoginInterceptor implements JeesnsInterceptor {
 
