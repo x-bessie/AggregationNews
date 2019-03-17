@@ -5,6 +5,7 @@ import com.lxinet.jeesns.core.annotation.Column;
 import com.lxinet.jeesns.core.annotation.Id;
 import com.lxinet.jeesns.core.annotation.Table;
 import com.lxinet.jeesns.core.enums.IdType;
+import com.lxinet.jeesns.model.cms.Article;
 
 /**
  * 用户选择喜欢的新闻分类
@@ -20,6 +21,8 @@ public class MemberClassification {
     private Integer classification;
     //暂时不用
     private Member member;
+
+    private Article findclass;
 
     public Integer getId() {
         return id;

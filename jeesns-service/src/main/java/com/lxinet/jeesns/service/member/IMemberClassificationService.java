@@ -1,5 +1,7 @@
 package com.lxinet.jeesns.service.member;
 
+import com.lxinet.jeesns.core.dto.ResultModel;
+import com.lxinet.jeesns.core.model.Page;
 import com.lxinet.jeesns.core.service.IBaseService;
 import com.lxinet.jeesns.model.member.MemberClassification;
 
@@ -16,4 +18,6 @@ public interface IMemberClassificationService extends IBaseService<MemberClassif
     Integer save(Integer mId, Integer classification);
 
 //    boolean update(String Classification, Integer mId);
+
+    ResultModel findByClassification(Page page, Integer mId);
 }

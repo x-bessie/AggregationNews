@@ -22,7 +22,11 @@
     insert into tbl_member_classification(m_id,classification) values(#{mId},#{classification})
   </insert>
     <!--<update id="update">-->
-        <!--update tbl_member_classification(classification) values ()-->
+    <!--update tbl_member_classification(classification) values ()-->
     <!--</update>-->
+
+    <select id="findByClassification" resultMap="MemberClassificationResult">
+    SELECT a.classification,b.create_time as "findclass.createtime",b.view_count as "findclass.view",b.id as "findclass.cid",b.cate_id AS "findclass.id",b.title "findclass.title" from tbl_member_classification as a   INNER JOIN  tbl_article as b on a.classification=b.cate_id WHERE a.m_id=#{mId} limit 20
+  </select>
 
 </mapper>
