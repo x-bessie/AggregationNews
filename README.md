@@ -15,3 +15,5 @@ Tomcat:8.5.37
 python:3.6.0
 
 其他的就看pom配置吧
+
+爬虫部分可以移步：https://github.com/x-bessie/pyspider_news
