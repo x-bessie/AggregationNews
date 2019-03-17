@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * Created by zchuanzhao on 2016/11/22.
+ * Created by Lina
  */
 @Controller("mamageWeiboController")
 @RequestMapping("/")

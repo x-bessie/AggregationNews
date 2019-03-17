@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 /**
- * Created by zchuanzhao on 2017/10/13.
+ * Created by Lina
  */
 @Controller
 @RequestMapping("/${managePath}/tag")

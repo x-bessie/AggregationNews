@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 18/8/15.
+ * Created by Lina.
  */
 @Controller("manageArticleCommentController")
 @RequestMapping("${managePath}/cms/comment")

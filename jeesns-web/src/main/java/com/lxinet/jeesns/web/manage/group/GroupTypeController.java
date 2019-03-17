@@ -13,8 +13,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @author: zchuanzhao
- * @date: 2018/5/15 下午1:17
+ * @author: Lina
+ * @date:
  */
 @Controller("manageGroupTypeController")
 @RequestMapping("/")

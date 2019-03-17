@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Created by liaolian on 19/01/13.
+ * Created by Lina
  */
 @Controller("manageArticleController")
 @RequestMapping("/")

@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.Properties;
 
 /**
- * Created by zchuanzhao on 16/9/26.
+ * Created by Lina
  */
 @Controller("manageIndexController")
 @RequestMapping("/${managePath}")

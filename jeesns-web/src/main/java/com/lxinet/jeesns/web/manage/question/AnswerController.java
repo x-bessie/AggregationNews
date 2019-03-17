@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 
 /**
  * 后台问题回答Controller
- * Created by zchuanzhao on 2018/12/24.
+ * Created by Lina
  */
 @Controller("answerController")
 @RequestMapping("${managePath}/question/{questionId}/answer/")

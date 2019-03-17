@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 /**
- * Created by zchuanzhao on 2017/9/07.
+ * Created by Lina
  */
 @Controller
 @RequestMapping("/${managePath}/ads")

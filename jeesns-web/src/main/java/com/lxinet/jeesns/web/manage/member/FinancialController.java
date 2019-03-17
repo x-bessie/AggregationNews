@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 2018/11/28.
+ * Created by Lina
  */
 @Controller
 @RequestMapping("/${managePath}/member/financial/")

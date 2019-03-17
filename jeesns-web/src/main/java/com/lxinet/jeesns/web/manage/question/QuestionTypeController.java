@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 2018/12/7.
+ * Created by Lina
  */
 @Controller
 @RequestMapping("${managePath}/question/type/")
