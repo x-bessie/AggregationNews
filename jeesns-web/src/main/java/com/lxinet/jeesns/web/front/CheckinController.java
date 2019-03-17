@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * 签到
- * Created by zchuanzhao on 2018/8/20.
+ * Created by Lina on 2019/1/20
  */
 @Controller
 @RequestMapping("/checkin/")

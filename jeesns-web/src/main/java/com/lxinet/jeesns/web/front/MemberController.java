@@ -31,7 +31,7 @@ import javax.validation.Valid;
 import java.util.Map;
 
 /**
- * Created by zchuanzhao on 2019/01/20.
+ * Created by Lina.
  */
 @Controller("memberIndexController")
 @RequestMapping("/member")

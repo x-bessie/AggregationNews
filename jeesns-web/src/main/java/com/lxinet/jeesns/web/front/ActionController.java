@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 
 /**
  * 动态
- * Created by zchuanzhao on 2017/3/8.
+ * Created by Lina
  */
 @Controller("frontActionController")
 @RequestMapping("/action/")

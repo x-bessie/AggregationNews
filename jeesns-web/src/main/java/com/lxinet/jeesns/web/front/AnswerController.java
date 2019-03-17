@@ -22,8 +22,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 前台问题回答Controller
- * Created by zchuanzhao on 2018/12/21.
+ * 前台问题回答Controller,停用
+ * Created by Lina
  */
 @Controller("frontAnswerController")
 @RequestMapping("/question/{questionId}/answer/")

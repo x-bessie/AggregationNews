@@ -26,7 +26,7 @@ import java.net.URLDecoder;
 import java.util.List;
 
 /**
- * Created by zchuanzhao on 2016/12/20.
+ * Created by Lina.
  */
 @Controller("frontWeiboController")
 @RequestMapping("/${weiboPath}")

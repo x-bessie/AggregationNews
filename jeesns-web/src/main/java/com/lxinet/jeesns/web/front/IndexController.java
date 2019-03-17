@@ -33,7 +33,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by zchuanzhao on 2016/11/25.
+ * Created by Lina.
  */
 @Controller("indexController")
 @RequestMapping("/")

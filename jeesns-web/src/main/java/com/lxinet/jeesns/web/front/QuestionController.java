@@ -38,7 +38,7 @@ import java.util.List;
 
 /**
  * 前台问答Controller
- * Created by zchuanzhao on 2018/12/21.
+ * Created by Lina
  */
 @Controller("frontQuestionController")
 @RequestMapping("/question/")
