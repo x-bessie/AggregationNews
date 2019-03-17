@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * @author: zchuanzhao
- * @date: 2018/5/16 下午16:14
+ * @author: Lina
+ * @date:
  */
 @Component
 public class GroupTypeDirective extends BaseDirective {

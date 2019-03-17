@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 
 /**
- * Created by zchuanzhao on 2017/09/08.
+ * Created by lina
  */
 @Component
 public class AdsDirective extends BaseDirective {
