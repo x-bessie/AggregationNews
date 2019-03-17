@@ -93,12 +93,12 @@
                                         </#if>
                                     </td>
                                     <td>
-                                        <a href="javascript:void(0)" data-href="${managePath}/member/level/${member.id}" target="_jeesnsOpen"
-                                           title="设置VIP会员" width="400px" height="300px">
-                                            <span class="label label-info">VIP</span>
-                                        </a>
+                                        <#--<a href="javascript:void(0)" data-href="${managePath}/member/level/${member.id}" target="_jeesnsOpen"-->
+                                           <#--title="设置VIP会员" width="400px" height="300px">-->
+                                            <#--<span class="label label-info">VIP</span>-->
+                                        <#--</a>-->
                                         <a href="javascript:void(0)" data-href="${managePath}/member/info/${member.id}" target="_jeesnsOpen"
-                                           title="会员详情" width="1000px" height="600px">
+                                           title="用户详情" width="1000px" height="600px">
                                             <span class="label label-info">详情</span>
                                         </a>
                                         <a href="javascript:void(0)" data-href="${managePath}/member/changepwd/${member.id}" target="_jeesnsOpen"

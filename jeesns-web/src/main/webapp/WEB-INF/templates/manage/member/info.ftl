@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>会员详情 - ${SITE_NAME} - AggregationNews后台管理系统</title>
+    <title>用户详情 - ${SITE_NAME} - AggregationNews后台管理系统</title>
     <meta name="keywords" content="${SITE_KEYS}"/>
     <meta name="description" content="${SITE_DESCRIPTION}"/>
     <meta name="author" content="Lina"/>

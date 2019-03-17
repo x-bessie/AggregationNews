@@ -17,7 +17,7 @@
                 <#--<li><a href="${groupPath}/">${GROUP_ALIAS}</a></li>-->
                 <li><a href="/group/">搜索</a></li>
                 <#--<li><a href="${basePath}/question/">问答</a></li>-->
-                <li><a href="${basePath}/action/list">动态</a></li>
+                <#--<li><a href="${basePath}/action/list">动态</a></li>-->
                 <#--<li><a href="${basePath}/picture/">图库</a></li>-->
                 <li><a href="${basePath}/checkin/">签到</a></li>
             </ul>

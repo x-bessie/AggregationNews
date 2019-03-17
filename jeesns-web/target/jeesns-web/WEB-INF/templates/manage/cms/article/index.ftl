@@ -69,10 +69,10 @@
                     <div class="box box-primary">
                         <div class="box-header">
                             <h3 class="box-title">
-                                <a href="javascript:void(0)" data-href="${managePath}/cms/article/add" target="_jeesnsOpen"
-                                   title="发布文章" width="1000px" height="680px">
-                                    <span class="label label-info">发布</span>
-                                </a>
+                                <#--<a href="javascript:void(0)" data-href="${managePath}/cms/article/add" target="_jeesnsOpen"-->
+                                   <#--title="发布文章" width="1000px" height="680px">-->
+                                    <#--<span class="label label-info">发布</span>-->
+                                <#--</a>-->
                             </h3>
 
                             <div class="box-tools">
@@ -125,12 +125,12 @@
                                         <a href="${managePath}/cms/comment/list?articleId=${article.id}" title="查看评论">
                                             <span class="label label-info"><i class="fa fa-comment green"></i></span>
                                         </a>
-                                        <a href="javascript:void(0)" data-href="${managePath}/cms/article/edit/${article.id}" target="_jeesnsOpen"
-                                           title="编辑文章" width="1000px" height="680px">
-                                            <span class="label label-warning"><i class="fa fa-edit green"></i></span>
-                                        </a>
+                                        <#--<a href="javascript:void(0)" data-href="${managePath}/cms/article/edit/${article.id}" target="_jeesnsOpen"-->
+                                           <#--title="编辑文章" width="1000px" height="680px">-->
+                                            <#--<span class="label label-warning"><i class="fa fa-edit green"></i></span>-->
+                                        <#--</a>-->
                                         <a class="marg-l-5" target="_jeesnsLink"
-                                           href="javascript:void(0)" data-href="${managePath}/cms/article/delete/${article.id}" confirm="确定要删除文章吗？" callback="reload">
+                                           href="javascript:void(0)" data-href="${managePath}/cms/article/delete/${article.id}" confirm="确定要删除新闻吗？" callback="reload">
                                             <span class="label label-danger"><i class="fa fa-trash red"></i></span>
                                         </a>
                                     </td>
