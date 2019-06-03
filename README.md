@@ -4,7 +4,27 @@
 分布式爬虫后台基于Pyspider框架。
 
 ###### 项目展示
-[图片]
+打开新闻页面
+![Alt text](./pic/news.png)
+新闻详情展示
+![Alt text](./pic/detail.png)
+
+新闻检索
+![Alt text](./pic/search.png)
+个人展示详情
+![Alt text](./pic/personal.png)
+新闻收藏
+![Alt text](./pic/collection.png)
+系统管理
+![Alt text](./pic/admin.png)
+新闻评论审核
+![Alt text](./pic/comment.png)
+用户管理
+![Alt text](./pic/manage.png)
+
+爬虫管理
+![Alt text](./pic/pyspider.png)
+
 ###### 开发配置：
 
 后台：**Springmvc，Spring,mybatis框架实现**
